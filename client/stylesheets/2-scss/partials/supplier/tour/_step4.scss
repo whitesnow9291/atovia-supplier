@@ -1,0 +1,63 @@
+.step-4 {
+	.image-wrap {
+		@extend .relative;
+		img {
+			width: $full;
+    }
+		.close {
+			@extend .absolute;
+			right: -12px;
+			background: $red;
+			top: -10px;
+			@include border-all(2px, solid, $white);
+			@include border-radius($full, $full, $full, $full);
+			height: 24px;
+			width: 24px;
+			color: $white;
+			z-index: 5;
+			opacity: 1;
+			line-height: 9px;
+			@extend .text-center;
+			i {
+				font-size: $font-10;
+				color: $white;
+      }
+    }
+  }
+	.radio-wrap {
+		margin-top: 5px;
+  }
+	.image-drag {
+		@extend .table;
+		height: 398px;
+		width: $full;
+		margin-bottom: 25px;
+  }
+	.drag-area {
+		@extend .table-cell;
+		height: $full;
+		@extend .text-center;
+		@extend .vertical-middle;
+		width: $full;
+		p {
+			font-size: $font-24;
+			font-weight: $weight_700;
+			color: $light-grey;
+			margin: 20px auto;
+    }
+		h5 {
+			font-size: $font-24;
+			font-weight: $weight_700;
+			color: $label-color;
+			margin-bottom: 15px;
+    }
+		.btn-wrap {
+			.btn {
+				padding: 15px 20px;
+				margin: 0 auto;
+				float: none;
+				width: auto;
+      }
+    }
+  }
+}

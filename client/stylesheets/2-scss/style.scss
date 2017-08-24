@@ -1,0 +1,58 @@
+body,
+html
+{
+	margin: 0;
+	padding: 0;
+	height: 100%;
+}
+@import 'modules/color';
+
+@import 'modules/align';
+
+@import 'modules/font';
+
+@import 'modules/mixins';
+
+@import 'modules/size';
+
+@import 'modules/reset';
+
+@import 'partials/login';
+
+@import 'partials/forgot';
+
+@import 'partials/resetPass';
+
+@import 'partials/userHeader';
+
+@import 'partials/profile';
+
+@import 'partials/supplier/signup';
+
+@import 'partials/supplier/summary';
+
+@import 'partials/supplier/tour';
+
+@import 'partials/supplier/booking';
+
+@import 'partials/supplier/tour/step1';
+
+@import 'partials/supplier/tour/step3';
+
+@import 'partials/supplier/tour/step4';
+
+@import 'partials/supplier/tour/step5';
+
+@import 'partials/supplier/tour/step6';
+
+@import 'partials/userProfile';
+
+@import 'partials/supplier/reports';
+
+@import 'partials/supplier/tour/step2';
+
+@import 'partials/supplier/uploadStep1';
+
+@import 'partials/supplier/tour/booking';
+
+@import 'partials/supplier/tour/view';

@@ -1,0 +1,56 @@
+.supplier-dashboard.booking {
+	ul.tabs {
+		li {
+			width: 25%;
+    }
+  }
+	.right-wrap {
+		.tab_container {
+			.tab_content {
+				.table-wrapper {
+					thead th {
+						padding: 15px;
+          }
+					tbody td {
+						color: $grey-anchor;
+						padding: 15px;
+          }
+					td.date-time {
+						width: 142px;
+          }
+					td.contact-person {
+						width: 190px;
+						.user-img img {
+							width: 30px;
+							height: 30px;
+							@include border-radius(100%, 100%, 100%, 100%);
+            }
+          }
+					td.travellers {
+						@extend .text-center;
+          }
+					td.tour-name {
+						color: $green-anchor;
+						font-weight: $weight_500;
+          }
+        }
+      }
+    }
+  }
+	.pagination-wrap {
+		@extend .pull_left;
+		width: $full;
+		margin-top: 29px;
+		p {
+			text-transform: uppercase;
+			margin: 0;
+			font-weight: $weight_700;
+			font-size: $font-14;
+    }
+		h4 {
+			margin-top: -3px;
+			font-size: $font-18;
+			color: $grey-anchor;
+    }
+  }
+}

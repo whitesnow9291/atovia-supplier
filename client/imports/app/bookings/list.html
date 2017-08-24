@@ -1,0 +1,135 @@
+<header-main></header-main>
+<main class="supplier-dashboard summary tours booking">
+  <div class="user-head">
+    <div class="container">
+      <div class="row justify-content-sm-center">
+        <div class="col-xl-10">
+          <div class="row sort-bar">
+            <div class="col-md-2">
+              <h4>Bookings</h4>
+            </div>
+            <div class="col-md-10">
+              <div class="row">
+                <div class="col-sm-9">
+                  <div class="row">
+                    <div class="col-7">
+                      <div class="form-group">
+                        <span><i class="fa fa-search" aria-hidden="true"></i></span>
+                        <input type="search" class="form-control" #searchtext placeholder="Search Booking ID, tour name or customer name..." (keyup)="search(searchtext.value)" (keydown)="clearsearch()" [(ngModel)]="searchString" />
+
+                      </div>
+                    </div>
+                    <div class="col-5">
+
+                      <div class="dropdown">
+                        <div class="anchor-icons" *ngIf="false">
+                          <a href="javascript:void(0)" class="top-anchor" [ngClass]="{'active': sortOrder == 1}" (click)="sortOrder=1; changeSortOrder(1);"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+                          <a href="javascript:void(0)" class="bottom-anchor" [ngClass]="{'active': sortOrder == -1}" (click)="sortOrder=-1; changeSortOrder(-1);"><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                        </div>
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span *ngIf="!sortBy">Sort</span>
+                          <span *ngIf="!!sortBy" [innerHTML]="sortBy"></span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                          <button class="dropdown-item" type="button" (click)="sortBy='Booking Date (ASC)'; sortOrder=1; changeOrderBy(sortBy);">Booking Date (ASC)</button>
+                          <button class="dropdown-item" type="button" (click)="sortBy='Booking Date (DESC)'; sortOrder=-1; changeOrderBy(sortBy);">Booking Date (DESC)</button>
+                          <button class="dropdown-item" type="button" (click)="sortBy='Tour (A-Z)'; sortOrder=1; changeOrderBy(sortBy);">Tour (A-Z)</button>
+                          <button class="dropdown-item" type="button" (click)="sortBy='Tour (Z-A)'; sortOrder=-1; changeOrderBy(sortBy);">Tour (Z-A)</button>
+                          <button class="dropdown-item" type="button" (click)="sortBy='Departure Date (ASC)'; sortOrder=1; changeOrderBy(sortBy);">Departure Date (ASC)</button>
+                          <button class="dropdown-item" type="button" (click)="sortBy='Departure Date (DESC)'; sortOrder=-1; changeOrderBy(sortBy);">Departure Date (DESC)</button>
+                          <button class="dropdown-item" type="button" (click)="sortBy='Contact Person (A-Z)'; sortOrder=1; changeOrderBy(sortBy);">Contact Person (A-Z)</button>
+                          <button class="dropdown-item" type="button" (click)="sortBy='Contact Person (Z-A)'; sortOrder=-1; changeOrderBy(sortBy);">Contact Person (Z-A)</button>
+                          <button class="dropdown-item" type="button" (click)="sortBy='Travellers (ASC)'; sortOrder=1; changeOrderBy(sortBy);">Travellers (ASC)</button>
+                          <button class="dropdown-item" type="button" (click)="sortBy='Travellers (DESC)'; sortOrder=-1; changeOrderBy(sortBy);">Travellers (DESC)</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="grey-bg">
+    <div class="container">
+      <div class="row justify-content-sm-center">
+        <div class="col-xl-10">
+          <ul class="tabs">
+            <li rel="tab1" (click)="activeTab='first'; changeStatus('pending')" class="active">New Bookings <span>{{bookingsCount.pending}}</span></li>
+            <li rel="tab2" (click)="activeTab='second'; changeStatus('confirmed')">Pending <span>{{bookingsCount.confirmed}}</span></li>
+            <li rel="tab3" (click)="activeTab='third'; changeStatus('completed')" class="">Completed <span>{{bookingsCount.completed}}</span></li>
+            <li rel="tab4" (click)="activeTab='fourth'; changeStatus('cancelled')" class="tab_last">Cancelled <span>{{bookingsCount.cancelled}}</span></li>
+          </ul>
+          <div class="right-wrap">
+            <div class="tab_container" id="tabContent1">
+              <!--tab-1-->
+              <h3 class="d_active tab_drawer_heading" rel="tab1" (click)="activeTab='first'; changeStatus('pending')">New Bookings <span>{{bookingsCount.pending}}</span></h3>
+              <div id="tab1" class="tab_content">
+                <div class="table-wrapper">
+                  <bookings-table [pageArr]="pageArr" [itemsSize]="itemsSize" [showAction]="true" (onApprove)="onApprove($event)" (onDisapprove)="onDisapprove($event)"></bookings-table>
+                </div>
+              </div>
+              <!--tab-1-->
+              <!--tab-2-->
+              <h3 class="tab_drawer_heading" rel="tab2" (click)="activeTab='second'; changeStatus('confirmed')">Pending <span>{{bookingsCount.confirmed}}</span></h3>
+              <div id="tab2" class="tab_content">
+                <div class="table-wrapper">
+                  <bookings-table [pageArr]="pageArr" [itemsSize]="itemsSize"></bookings-table>
+                </div>
+              </div>
+              <!--tab-2-->
+
+              <!--tab-3-->
+              <h3 class="tab_drawer_heading" rel="tab3" (click)="activeTab='third'; changeStatus('completed')">Completed <span>{{bookingsCount.completed}}</span></h3>
+              <div id="tab3" class="tab_content">
+                <div class="table-wrapper">
+                  <bookings-table [pageArr]="pageArr" [itemsSize]="itemsSize"></bookings-table>
+                </div>
+              </div>
+              <!--tab-3-->
+
+              <!--tab-4-->
+              <h3 class="tab_drawer_heading" rel="tab4" (click)="activeTab='fourth'; changeStatus('cancelled')">Cancelled <span>{{bookingsCount.cancelled}}</span></h3>
+              <div id="tab4" class="tab_content">
+                <div class="table-wrapper">
+                  <bookings-table [pageArr]="pageArr" [itemsSize]="itemsSize"></bookings-table>
+                </div>
+              </div>
+              <!--tab-4-->
+            </div>
+
+          </div>
+          <div class="pagination-wrap">
+
+            <pagination-template id="bookings" #p="paginationApi"
+                 (pageChange)="onPageChanged($event)" >
+
+								<div class="row">
+									<div class="col-4">
+										<button type="button" class="btn green-btn" [disabled]="p.isFirstPage()" (click)="p.previous()"><span><i class="fa fa-angle-left" aria-hidden="true"></i></span> Previous</button>
+									</div>
+									<div class="col-4 text-center">
+										<p>page</p>
+										<h4 [innerHTML]="p.getCurrent() + '/' + p.getLastPage()"></h4>
+									</div>
+									<div class="col-4 text-right">
+										<button type="button" class="btn green-btn" [disabled]="p.isLastPage()" (click)="p.next()">Next <span><i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
+									</div>
+								</div>
+
+						</pagination-template>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--<pagination-controls *ngIf="itemsSize>0" class="pagination" (pageChange)="onPageChanged($event)"></pagination-controls>-->
+    </div>
+  </div>
+</main>

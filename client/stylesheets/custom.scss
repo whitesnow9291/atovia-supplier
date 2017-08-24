@@ -1,0 +1,92 @@
+.has-error {
+  font-size: 14px;
+  color: #D8000C
+}
+.content-page-heading {
+  text-align: left;
+  margin: 15px 0 0 15px;
+}
+.content-page-content {
+  text-align: center;
+  margin: 15px 0 0 15px;
+}
+canvas {
+    background-color: #ffffff;
+}
+.bottom-btn .btn {
+  width: 200px !important;
+}
+.profile-btn {
+  width: 200px !important;
+}
+
+.switch-btn {
+  margin-bottom: 10px;
+}
+.price-table, .status-table, .report-table {
+  display: block !important;
+}
+.upload-show {
+  color: #16a085;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.form-control {
+  .completer-input {
+    width: 100%;
+    padding: 0;
+    border: 0;
+    box-shadow: none;
+    outline: 0;
+  }
+}
+
+.completer-dropdown-holder, .completer-dropdown {
+  width: 90% !important;
+}
+.completer-row-wrapper, .completer-row, .completer-item-text, .completer-list-item-holder, .completer-list-item {
+  width: 100% !important;
+}
+
+.cancellation {
+  float: left;
+  width: 100%;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #e0e2e6;
+  background: #fff;
+  .col-sm-5, .col-sm-10 {
+    padding-top: 10px;
+    p {
+      color: #5a6b81;
+      font-weight: 700;
+      font-size: 16px;
+    }
+  }
+  h3 {
+    color: #5a6b81;
+    padding-top: 10px;
+    padding-left: 10px;
+    font-weight: 700;
+    font-size: 22px;
+  }
+}
+
+.sales {
+  width: 100%;
+  margin-top: 30px;
+}
+
+.tour-detail {
+  .grey-bg {
+    .cancel {
+      width: 100%;
+    }
+  }
+}

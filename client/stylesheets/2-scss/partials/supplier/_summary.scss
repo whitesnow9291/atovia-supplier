@@ -1,0 +1,141 @@
+.supplier-dashboard.summary {
+	.container {
+		@media (max-width: $laptop) {
+			width: $full;
+    }
+  }
+	.col-md-4 {
+		@media (max-width: $ipad) {
+			width: 75%;
+			margin: 15px auto;
+			float: none;
+    }
+		@media (max-width: $medium-phone) {
+			width: $full;
+    }
+  }
+	.user-head {
+		height: 60px;
+		padding: 15px 0;
+		h4 {
+			font-weight: $weight_700;
+			font-size: $font-24;
+			color: $label-color;
+    }
+  }
+	.right-wrap {
+		padding: 35px 35px 0 35px;
+		@media (max-width: $laptop) {
+			padding: 15px 15px 0 15px;
+    }
+		h4 {
+			color: $grey-anchor;
+			font-size: $font-20;
+			margin-bottom: 20px;
+			span {
+
+				color: $light-grey;
+				font-size: $font-14;
+				@media (max-width: $laptop) {
+					display: block;
+        }
+      }
+    }
+		.count {
+			font-size:  $font-26;
+			font-weight: $weight_900;
+			color: $label-color;
+    }
+		.side-img {
+			margin-top: -15px;
+			@extend .pull-right;
+			@media (max-width: $laptop) {
+				margin-top: 5px;
+      }
+    }
+  }
+
+	.recent-booking {
+		margin: 34px auto;
+		.right-wrap {
+			padding: 0;
+			.table-top {
+				padding: 18px 22px;
+				h5 {
+					font-weight: $weight_700;
+					font-size: $font-20;
+					color: $label-color;
+        }
+				p {
+					margin-bottom: 0;
+					color: $grey-anchor;
+					font-size: $font-16;
+        }
+				a {
+					@extend .pull_right;
+					color: $green-anchor;
+					font-weight: $weight_700;
+					font-size: $font-16;
+					margin-top: 13px;
+        }
+      }
+    }
+		.table {
+			width: 918px;
+			max-width: 918px;
+			tbody,
+			tr {
+				@extend .block;
+      }
+			th,
+			td {
+				@extend .vertical-middle;
+      }
+			th img {
+				height: 48px;
+				width: 48px;
+				@include border-radius(4px, 4px, 4px, 4px);
+      }
+			.location {
+				width: 320px;
+				h5 {
+					font-weight: $weight_700;
+					font-size: $font-18;
+					color: $label-color;
+        }
+				p {
+					margin-bottom: 0;
+					color: $grey-anchor;
+					font-size: $font-16;
+        }
+      }
+			.user-detail {
+				width: 237.5px;
+				.user-img img {
+					height: 48px;
+					width: 48px;
+					@include border-radius($full, $full, $full, $full);
+        }
+				.user-name {
+					font-weight: $weight_700;
+					font-size: $font-18;
+					color: $label-color;
+					margin-left: 5px;
+        }
+      }
+			.total-travellers {
+				color: $green-anchor;
+				font-weight: $weight_700;
+				font-size: $font-16;
+      }
+			.booking-details {
+				button {
+					width: auto;
+					padding: 10px 15px;
+					font-size: $font-14;
+					@extend .pull_right;
+        }
+      }
+    }
+  }
+}

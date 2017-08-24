@@ -1,0 +1,92 @@
+<header-main></header-main>
+<main class="report">
+  <div class="user-head">
+    <div class="container">
+      <div class="row justify-content-sm-center">
+        <div class="col-xl-10">
+          <div class="row sort-bar">
+            <div class="col-md-2">
+              <h4>Reports</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grey-bg">
+    <div class="container">
+      <div class="row justify-content-sm-center">
+        <div class="col-xl-10">
+          <income-statistics></income-statistics>
+          <div class="sale-history">
+            <div class="hdr">
+              <div class="row">
+                <div class="col-sm-12">
+                  <ul>
+                    <li [ngClass]="{'active': activeTab == 'Sales'}"><a href="javascript:void(0)" (click)="activeTab = 'Sales'">Sales</a></li>
+                    <li [ngClass]="{'active': activeTab == 'Payouts'}"><a href="javascript:void(0)" (click)="activeTab = 'Payouts'">Payouts</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="filter-head">
+              <div class="row">
+                <div class="col-lg-4" *ngIf="activeTab == 'Sales'">
+                  <h4>Sales History</h4>
+                </div>
+                <div class="col-lg-4" *ngIf="activeTab == 'Payouts'">
+                  <h4>Payout History</h4>
+                </div>
+                <div class="col-lg-8">
+                  <div class="row">
+                    <div class="col-md-9">
+                      <label>Filter</label>
+                      <div class="form-group">
+                        <span class="left-icon"><i class="fa fa-calendar-o" aria-hidden="true"></i></span>
+                        <input type="text" id="datetimepicker3" class="form-control" placeholder="Start Date" #startDate/>
+                      </div>
+                      <div class="form-group">
+                        <span class="left-icon"><i class="fa fa-calendar-o" aria-hidden="true"></i></span>
+                        <input type="text" id="datetimepicker4" class="form-control" placeholder="End Date" #endDate/>
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <button type="button" class="btn green-btn" (click)="filterSales(startDate.value, endDate.value)">Filter</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="table-wrapper table-responsive report-table">
+              <sales-table [where]="whereCond" *ngIf="activeTab == 'Sales'"></sales-table>
+              <payouts-table [where]="whereCond" *ngIf="activeTab == 'Payouts'"></payouts-table>
+            </div>
+          </div>
+
+          <div class="sales pagination-wrap">
+
+            <pagination-template [id]="paginationId" #p="paginationApi"
+                 (pageChange)="onPageChanged($event)" >
+
+								<div class="row">
+									<div class="col-4">
+										<button type="button" class="btn green-btn" [disabled]="p.isFirstPage()" (click)="p.previous()"><span><i class="fa fa-angle-left" aria-hidden="true"></i></span> Previous</button>
+									</div>
+									<div class="col-4 text-center">
+										<p>page</p>
+										<h4 [innerHTML]="p.getCurrent() + '/' + p.getLastPage()"></h4>
+									</div>
+									<div class="col-4 text-right">
+										<button type="button" class="btn green-btn" [disabled]="p.isLastPage()" (click)="p.next()">Next <span><i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
+									</div>
+								</div>
+
+						</pagination-template>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,153 @@
+<header-main></header-main>
+<main class="supplier-dashboard summary tours allbooking">
+  <div class="user-head">
+    <div class="container">
+      <div class="row justify-content-sm-center">
+        <div class="col-xl-10">
+          <div class="row sort-bar">
+            <div class="col-md-2">
+              <h4>Bookings</h4>
+            </div>
+            <div class="col-md-5 offset-md-5">
+              <div class="form-group">
+                <span><i class="fa fa-search" aria-hidden="true"></i></span>
+                <input type="search" class="form-control" id="search" placeholder="Search Booking ID, tour name or suppliers..."/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="grey-bg">
+    <div class="container">
+      <div class="row justify-content-sm-center">
+        <div class="col-xl-10">
+          <a [routerLink]="['/bookings/list']" class="green-anchor"><span><i class="fa fa-angle-left" aria-hidden="true"></i></span>See all bookings</a>
+        </div>
+        <div class="col-xl-10" *ngIf="!!booking">
+          <!--booking-details-->
+          <div class="booking-details">
+            <div class="booking-img">
+              <img *ngIf="!booking.tour.featuredImage?.url" src="images/trip.png" alt="" />
+              <img *ngIf="booking.tour.featuredImage?.url" src="uploads/images/{{booking.tour.featuredImage?.id}}-300-300.jpg" alt="" />
+            </div>
+            <div class="booking-desc">
+              <div class="hdr">
+                <h3>{{booking.tour.name}}</h3>
+                <p><span><i class="fa fa-map-marker" aria-hidden="true"></i></span>{{booking.tour.destination}}</p>
+              </div>
+              <div class="booking-info">
+                <div class="row">
+                  <div class="col-sm-4">
+                    <h6>Booking ID</h6>
+                    <p>{{booking.uniqueId}}</p>
+                  </div>
+                  <div class="col-sm-4">
+                    <h6>Booking date</h6>
+                    <p>{{booking.createdAt | date}}</p>
+                  </div>
+                  <div class="col-sm-4">
+                    <h6>Status</h6>
+                    <p [innerHTML]="bookingStatus"></p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-7">
+                    <h6>Departure</h6>
+                    <p>{{booking.startDate | date}} <span class="green-label" *ngIf="departInDays > 0 && ! booking.cancelled">Depart in {{departInDays}} days</span></p>
+                  </div>
+                  <div class="col-md-5">
+                    <h6>Return</h6>
+                    <p>{{booking.endDate | date}}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--booking-details-->
+          <!--travler-wrap-->
+          <div class="travler-wrap">
+            <p *ngIf="isProcessing" class="process-wrap">Your request is under processing. Please wait for a while.</p>
+            <div class="row">
+              <div class="col-sm-8">
+                <ul>
+                  <li *ngFor="let traveller of booking.travellers; let i = index;">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <h3>Traveller {{i+1}} <span *ngIf="i==0" class="green-label pull-right">Main Contact Person</span></h3>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-4">
+                        <h6>Name</h6>
+                        <p>{{traveller.firstName}} {{traveller.lastName}}</p>
+                      </div>
+                      <div class="col-sm-4">
+                        <h6>Passport Country</h6>
+                        <p *ngIf="!! traveller.passport?.country">{{traveller.passport?.country}}</p>
+                        <p *ngIf="! traveller.passport?.country">Not Compatible</p>
+                      </div>
+                      <div class="col-sm-4">
+                        <h6>Passport Number</h6>
+                        <p *ngIf="!! traveller.passport?.number">{{traveller.passport?.number}}</p>
+                        <p *ngIf="! traveller.passport?.number">Not Compatible</p>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-sm-4">
+                <div class="payment-wrap">
+                  <div class="pay-method">
+                    <p>Payment Method</p>
+                    <h3 *ngIf="booking.paymentInfo?.method == 'express_checkout'"><span><i class="fa fa-paypal" aria-hidden="true"></i></span>Paypal</h3>
+                    <h3 *ngIf="booking.paymentInfo?.method == 'credit_card'"><span><i class="fa fa-credit-card" aria-hidden="true"></i></span>Credit Card</h3>
+                  </div>
+                  <div class="special-req" *ngIf="!! booking.travellers[0]?.specialRequest">
+                    <p>Special Request</p>
+                    <h3>{{booking.travellers[0]?.specialRequest}}</h3>
+                  </div>
+                  <div class="special-req refund-req" *ngIf="booking.cancelled == true && booking.refunded !== true">
+                    <p>Refund Requested</p>
+
+                  </div>
+                  <div class="special-req refund-req" *ngIf="booking.cancelled == true && booking.refunded == true">
+                    <p>Refunded</p>
+                    <span>Refund request was processed by {{booking.refundInfo?.processedBy}} at {{booking.refundInfo?.processedAt | date}} {{booking.refundInfo?.processedAt | date:'shortTime'}}</span>
+                  </div>
+                </div>
+                <button *ngIf="booking.confirmed == false && booking.cancelled == false" class="green-btn full-btn" (click)="approveBooking()">Confirm Tour</button>
+                <button *ngIf="booking.confirmed == false && booking.cancelled == false" class="red-btn full-btn" (click)="disapproveBooking()">Tour Unavailable</button>
+              </div>
+            </div>
+          </div>
+          <!--travler-wrap-->
+          <div class="cancellation" *ngIf="booking.cancelled">
+            <h3>Cancellation Details</h3>
+            <div class="row">
+              <div class="col-xl-10">
+                <div class="col-sm-5">
+                  <h6>Cancelled At: </h6>
+                  <p>{{booking.cancelledAt | date}}</p>
+                </div>
+                <div class="col-sm-5">
+                  <h6>Cancelled By: </h6>
+                  <p><b>{{booking.cancelledBy | uppercase}}<b></p>
+                </div>
+                <div class="col-sm-10">
+                  <h6>Cancellation Reason: </h6>
+                  <p>{{booking.cancellationReason}}</p>
+                </div>
+                <div class="col-sm-10">
+                  <h6>Cancellation Comments: </h6>
+                  <p>{{booking.cancellationComments}}</p>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

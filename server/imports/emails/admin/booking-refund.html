@@ -1,0 +1,18 @@
+Hi Admin, <br />
+Refund request has been processed of ${booking.user.firstName} for tour ${booking.tour.name}
+and will be released soon by ${booking.tour.supplier.companyName}. <br />
+Please find tour details below: <br />
+<br />
+<ul>
+  <li>Booking ID: ${booking.uniqueId}</li>
+  <li>Departure: ${booking.tour.departure}</li>
+  <li>Destination: ${booking.tour.destination}</li>
+  <li>Start Date: ${getFormattedDate(booking.startDate)} </li>
+  <li>End Date: ${getFormattedDate(booking.endDate)} </li>
+  <li>Num of Travellers: ${booking.numOfTravellers} </li>
+  <li>Total Price: ${booking.totalPrice}</li>
+  <li>Payment Method: ${booking.paymentInfo.method} </li>
+  <li>Supplier Name: ${booking.tour.supplier.companyName}</li>
+  <li> View Link: <a href="${adminAppUrl}/bookings/view/${booking._id}">${booking.tour.name}</a> </li>
+</ul>
+<p>Team Atorvia</p>

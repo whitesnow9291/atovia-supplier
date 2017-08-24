@@ -1,0 +1,162 @@
+<header-main></header-main>
+<main>
+  <div class="grey-bg step-1 step-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h3 class="tour-head">New Tour</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <ul class="tab-list">
+            <li class="completed">
+              <a [routerLink]="['/tours/create/step1']">
+                <span><i class="fa fa-check" aria-hidden="true"></i></span>
+                <div class="tab-detail">
+                  <h4>Tour Details</h4>
+                  <p>General tour information</p>
+                </div>
+              </a>
+            </li>
+            <li class="completed">
+              <a [routerLink]="['/tours/create/step2']">
+                <span><i class="fa fa-check" aria-hidden="true"></i></span>
+                <div class="tab-detail">
+                  <h4>Tour Schedule</h4>
+                  <p>Tour availability & Prices</p>
+                </div>
+              </a>
+            </li>
+            <li class="completed">
+              <a [routerLink]="['/tours/create/step3']">
+                <span><i class="fa fa-check" aria-hidden="true"></i></span>
+                <div class="tab-detail">
+                  <h4>Tour Itinerary</h4>
+                  <p>Day by day schedule</p>
+                </div>
+              </a>
+            </li>
+            <li class="completed">
+              <a [routerLink]="['/tours/create/step4']">
+                <span><i class="fa fa-check" aria-hidden="true"></i></span>
+                <div class="tab-detail">
+                  <h4>Tour Gallery</h4>
+                  <p>Gorgeous images</p>
+                </div>
+              </a>
+            </li>
+            <li class="active">
+              <a href="javascript:void(0)">
+                <span>5</span>
+                <div class="tab-detail">
+                  <h4>Inclusion & Policy</h4>
+                  <p>Last thing customer need to know</p>
+                </div>
+              </a>
+            </li>
+            <li class="disabled">
+              <a href="javascript:void(0)">
+                <span>6</span>
+                <div class="tab-detail">
+                  <h4>Review</h4>
+                  <p>Make sure everything is correct</p>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-8">
+          <form [formGroup]="step5Form" #f="ngForm">
+            <section class="right-wrap tour-detail">
+              <div class="tour-header">
+                <h5>Step 5</h5>
+                <h3>Inclusions & Policy</h3>
+            
+                <p>Mauris non tempor quam, et lacinia sapien. Mauris accumsan eros eget libero posuere vulputate. Etiam elit elit, elementum sed varius at, adipiscing vitae est. </p>
+              </div>
+              <div class="steps step1-form">
+
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <label for="INCLUSIONS">TOUR INCLUSIONS *<span>Separate each point with new line</span></label>
+                      <div class="input-wrap">
+                        <textarea class="form-control" id="INCLUSIONS" placeholder="Tour Inclusions" formControlName="inclusions"></textarea>
+                        <div *ngIf="step5Form.controls.inclusions.errors && step5Form.controls.inclusions.touched" class="has-error">
+                          <div *ngIf="step5Form.controls.inclusions.hasError('required')">You have to fill in Tour Inclusions.</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <label for="EXCLUSIONS">TOUR EXCLUSIONS *<span>Separate each point with new line</span></label>
+                      <div class="input-wrap">
+                        <textarea class="form-control" id="EXCLUSIONS" placeholder="Tour Exclusions" formControlName="exclusions"></textarea>
+                        <div *ngIf="step5Form.controls.exclusions.errors && step5Form.controls.exclusions.touched" class="has-error">
+                          <div *ngIf="step5Form.controls.exclusions.hasError('required')">You have to fill in Tour Exclusions.</div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <label for="CANCELLATION">YOUR CANCELLATION POLICY *<span class="pull_right">Accepts PDF Format only. Max. 5MB.</span></label>
+                      <div class="input-wrap">
+                        <div class="input-group">
+                          <input #fileInput type="file" class="form-control" id="CANCELLATION" placeholder="Attach your cancellation policy" (change)="onFileSelect($event, 'cancellationPolicy')" accept="application/pdf" />
+                          <span class="pull_left">Attach your cancellation policy</span>
+                          <div class="input-group-btn">
+                            <button type="button" class="btn green-btn" (click)="fileInput.click();">Upload</button>
+                          </div>
+                        </div>
+
+                      </div>
+
+                      <p class="form-text text-muted" *ngIf="isUploading">We are uploading your PDF files.</p>
+
+                      <div *ngIf="cancellationPolicy">
+                        <a href="{{cancellationPolicy.url}}" download><span>{{cancellationPolicy.name}}</span></a>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <label for="Refund">YOUR Refund POLICY *<span class="pull_right">Accepts PDF Format only. Max. 5MB.</span></label>
+                      <div class="input-wrap">
+                        <div class="input-group">
+                          <input #fileInput2 type="file" class="form-control" id="Refund" placeholder="Attach your refund policy" (change)="onFileSelect($event, 'refundPolicy')" accept="application/pdf" />
+                          <span class="pull_left">Attach your refund policy</span>
+                          <div class="input-group-btn">
+                            <button type="button" class="btn green-btn" (click)="fileInput2.click();">Upload</button>
+                          </div>
+                        </div>
+                      </div>
+                      <p class="form-text text-muted" *ngIf="isUploading1">We are uploading your PDF files.</p>
+
+                      <div *ngIf="refundPolicy">
+                        <a href="{{refundPolicy.url}}" download><span>{{refundPolicy.name}}</span></a>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </section>
+            <div class="form-group  bottom-btn">
+              <button type="button" class="btn grey-btn pull-left" [routerLink]="['/tours/create/step4']"><span><i class="fa fa-angle-left" aria-hidden="true"></i></span>Back</button>
+              <button type="button" class="btn green-btn pull-right" (click)="step5()">Next<span><i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

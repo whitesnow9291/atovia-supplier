@@ -1,0 +1,111 @@
+<header-main></header-main>
+<main class="supplier-dashboard summary tours booking">
+  <div class="user-head">
+    <div class="container">
+      <div class="row justify-content-sm-center">
+        <div class="col-xl-10">
+          <div class="row sort-bar">
+            <div class="col-md-2">
+              <h4>Tours</h4>
+            </div>
+            <div class="col-md-10">
+              <div class="row">
+                <div class="col-sm-9">
+                  <div class="row">
+                    <div class="col-7">
+                      <div class="form-group">
+                        <span><i class="fa fa-search" aria-hidden="true"></i></span>
+                        <input type="search" class="form-control" #searchtext placeholder="Search Booking ID, tour name or suppliers..." (keyup)="search(searchtext.value)" (keydown)="clearsearch()" [(ngModel)]="searchString" />
+
+                      </div>
+                    </div>
+                    <div class="col-5">
+
+                      <div class="dropdown">
+                        <div class="anchor-icons" *ngIf="false">
+                          <a href="javascript:void(0)" class="top-anchor" [ngClass]="{'active': sortOrder == 1}" (click)="sortOrder=1; changeSortOrder(1);"><i class="fa fa-angle-up" aria-hidden="true"></i></a>
+                          <a href="javascript:void(0)" class="bottom-anchor" [ngClass]="{'active': sortOrder == -1}" (click)="sortOrder=-1; changeSortOrder(-1);"><i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                        </div>
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span *ngIf="!sortBy">Sort</span>
+                          <span *ngIf="!!sortBy" [innerHTML]="sortBy"></span>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                          <button class="dropdown-item" type="button" (click)="sortBy='Tour (A - Z)'; sortOrder=1; changeOrderBy('tour_asc');">Tour (A - Z)</button>
+                          <button class="dropdown-item" type="button" (click)="sortBy='Tour (Z - A)'; sortOrder=-1; changeOrderBy('tour_desc');">Tour (Z - A)</button>
+                          <button class="dropdown-item" type="button" (click)="sortBy='Length (Low - High)'; sortOrder=1; changeOrderBy('length_asc');">Length (Low - High)</button>
+                          <button class="dropdown-item" type="button" (click)="sortBy='Length (High - Low)'; sortOrder=-1; changeOrderBy('length_desc');">Length (High - Low)</button>
+                          <button class="dropdown-item" type="button" (click)="sortBy='Availability (Min - Max)'; sortOrder=1; changeOrderBy('availability_asc');">Availability (Min - Max)</button>
+                          <button class="dropdown-item" type="button" (click)="sortBy='Availability (Max - Min)'; sortOrder=-1; changeOrderBy('availability_desc');">Availability (Max - Min)</button>
+                          <button class="dropdown-item" type="button" (click)="sortBy='Price From (Min - Max)'; sortOrder=1; changeOrderBy('price_asc');">Price From (Min - Max)</button>
+                          <button class="dropdown-item" type="button" (click)="sortBy='Price From (Max - Min)'; sortOrder=-1; changeOrderBy('price_desc');">Price From (Max - Min)</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <button type="button" class="btn green-btn" [routerLink]='["/tours/create/step1"]' (click)="newTour()"><i class="fa fa-plus" aria-hidden="true"></i>New Tour</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="grey-bg">
+    <div class="container">
+      <div class="row justify-content-sm-center">
+        <div class="col-xl-10">
+          <ul class="tabs">
+            <li rel="tab1" (click)="showPending=false; changeStatus(true)" [ngClass]="{'active': !showPending}">Approved Tours <span >{{approvedCount}}</span></li>
+            <li rel="tab2" (click)="showPending=true; changeStatus(false);" [ngClass]="{'active': showPending}" class="tab_last">Pending Approval <span >{{pendingCount}}</span></li>
+          </ul>
+          <div class="right-wrap">
+            <div class="tab_container" id="tabContent1">
+              <!--tab-1-->
+              <h3 class="d_active tab_drawer_heading" rel="tab1" (click)="showPending=false; changeStatus(true)">Approved Tours <span *ngIf="approvedCount > 0">{{approvedCount}}</span></h3>
+              <div id="tab1" class="tab_content">
+                <div class="table-responsive">
+                  <tours-table [pageArr]="pageArr" [itemsSize]="itemsSize" [showAction]="true" (onDelete)="onDelete($event)"></tours-table>
+                </div>
+              </div>
+              <!--tab-1-->
+              <!--tab-2-->
+              <h3 class="tab_drawer_heading" rel="tab2" (click)="showPending=true; changeStatus(false);">Pending Approval<span *ngIf="pendingCount > 0">{{pendingCount}}</span></h3>
+              <div id="tab2" class="tab_content">
+                <div class="table-responsive">
+                  <tours-table [pageArr]="pageArr" [itemsSize]="itemsSize" [showAction]="true" (onDelete)="onDelete($event)"></tours-table>
+                </div>
+              </div>
+              <!--tab-2-->
+            </div>
+          </div>
+          <div class="pagination-wrap">
+
+            <pagination-template id="tours" #p="paginationApi"
+                 (pageChange)="onPageChanged($event)" >
+
+								<div class="row">
+									<div class="col-4">
+										<button type="button" class="btn green-btn" [disabled]="p.isFirstPage()" (click)="p.previous()"><span><i class="fa fa-angle-left" aria-hidden="true"></i></span> Previous</button>
+									</div>
+									<div class="col-4 text-center">
+										<p>page</p>
+										<h4 [innerHTML]="p.getCurrent() + '/' + p.getLastPage()"></h4>
+									</div>
+									<div class="col-4 text-right">
+										<button type="button" class="btn green-btn" [disabled]="p.isLastPage()" (click)="p.next()">Next <span><i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
+									</div>
+								</div>
+
+						</pagination-template>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

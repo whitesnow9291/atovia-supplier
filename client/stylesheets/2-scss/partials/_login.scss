@@ -1,0 +1,170 @@
+.center-content {
+	@extend .table-cell;
+	height : $full;
+	@extend .vertical-middle;
+	width : $full;
+}
+
+.side-images
+{
+	@include cover-background('/images/login-bg.png');
+	.center-content
+	{
+		padding : 0 100px;
+		@media (max-width: $desktop) {
+			padding: 0 50px;
+		}
+		@media (max-width: $ipad) {
+			padding: 0 25px;
+		}
+		@media (max-width: small_phone) {
+			padding: 0 15px;
+		}
+		h3
+		{
+			color : $white;
+			@extend .relative;
+			font-size : $font-36;
+			@media (max-width: $ipad) {
+				text-align: center;
+				font-weight: 900;
+			}
+			&:after {
+				background : $white;
+				@extend .absolute;
+				bottom : -45px;
+				content : '';
+				height : 2px;
+				width : 150px;
+				left : 0;
+				margin-bottom : 30px;
+				@media (max-width: $ipad) {
+					display: none;
+				}
+			}
+		}
+		p
+		{
+			margin-top : 25px;
+			font-size : $font-18;
+			color : $white;
+			@media (max-width: $ipad) {
+				display: none;
+			}
+		};
+	}
+	.table-wrapper {
+		@media (max-width: $ipad){
+			height: 250px!important;
+		}
+	}
+}
+
+.table-wrapper {
+	@extend .table;
+	width : $full;
+}
+
+.side-form
+{
+	.center-content
+	{
+		padding : 0 100px;
+		@media (max-width: $laptop)
+		{
+			padding: 0 50px;
+		}
+		@media (max-width: $ipad)
+		{
+			padding: 0 25px
+		}
+		@media (max-width: small_phone) {
+			padding: 0 15px
+		}
+		h4
+		{
+			font-weight : 700;
+			color : $green-anchor;
+			font-size : $font-30;
+		}
+		p {
+			color : $label-color;
+			font-size :  $font-14;
+		}
+	}
+
+	label {
+		color : $label-color;
+		font-size :  $font-14;
+	}
+	.input-wrap
+	{
+		@extend .relative;
+		.form-control {}
+
+		span
+		{
+			height : 20px;
+			@extend .absolute;
+			right : 10px;
+			top : 5px;
+			width : 30px;
+			@extend .text-center;
+			i
+			{
+				font-size : $font-18;
+				color : $border-color;
+			}
+		}
+	}
+}
+
+.side-form.table-wrapper {
+	@media (max-width: $ipad)
+	{
+		padding: 25px 0;
+		height: auto!important;
+	}
+}
+
+.forget-pass .row
+{
+	width : $full;
+	margin: 0;
+	.col-lg-6
+	{
+		padding : 0;
+		.green-btn
+		{
+			@extend .pull_right;
+			@media (max-width: $laptop)
+			{
+				width : $full;
+				margin: 10px auto;
+			}
+		}
+		a
+		{
+			color : $green-anchor;
+		}
+	}
+
+
+	.col-lg-6.forget-pass-link
+	{
+		@media (max-width: $laptop)
+		{
+			text-align : center;
+		}
+	}
+}
+
+
+.add-account
+{
+	a
+	{
+		font-size : $font-16;
+		color : $grey-anchor;
+	}
+}

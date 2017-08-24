@@ -1,0 +1,42 @@
+.signup-wrap .side-images {
+	@include cover-background('/images/supplier-signup.png', 100%, 100%);
+}
+
+.feature-listing {
+	height: auto;
+	margin-top: 30px;
+	li {
+		@extend .relative;
+		width: 50%;
+		@extend .pull-left;
+		margin-bottom: 35px;
+		color: $white;
+		font-size: $font-18;
+		font-weight: weight_500;
+		padding-left: 55px;
+		@media (max-width: $medium-phone) {
+			padding-left: 30px;
+		}
+		&:before {
+			@extend .absolute;
+			background: $white;
+			height: 30px;
+			width: 30px;
+			border-radius: $full;
+			@extend .left-0;
+			content: '';
+			top: 0px;
+			@media (max-width: $medium-phone) {
+				height: 20px;
+				width: 20px;
+				top: 2px;
+			}
+    }
+  }
+}
+
+.signup-wrap {
+	#companyName {
+		text-transform: capitalize;
+	}
+}

@@ -1,0 +1,25 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Period</th>
+      <th>Description</th>
+      <th>Status</th>
+      <th>Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of pageArr; let i = index;">
+      <td>
+        <span class="date">
+          {{item.fromDate | date}}
+        </span>
+        <span class="time">
+          {{item.toDate | date}}
+        </span>
+      </td>
+      <td>{{item.title}}</td>
+      <td>{{item.status}}</td>
+      <td>${{item.amount}}</td>
+    </tr>
+  </tbody>
+</table>

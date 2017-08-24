@@ -1,0 +1,102 @@
+.user-header {
+	@include cover-background('/images/header-bg.png');
+	.navbar {
+		padding : 0 1rem;
+		height : 80px;
+		@media (max-width: $laptop) {
+			height: auto;
+			padding: 1rem;
+		}
+		.navbar-toggler {
+			span i {
+				color: $white;
+				margin-top: 4px;
+			}
+		}
+		.navbar-brand {
+			margin-right : 50px;
+			padding-top : 0;
+		}
+		.navbar-nav {
+			margin-top : 4px;
+			.nav-item .nav-link {
+				color : $hedaer-hover;
+				font-size : $font-16;
+				font-weight : $weight_700;
+				padding : 8px 25px;
+				&:hover {
+					color : $white;
+				}
+			}
+			.nav-item.active .nav-link {
+				color : $white;
+			}
+		}
+		.user-drop {
+			@extend .absolute;
+			@extend .right-0;
+			top: 16px;
+			@media (max-width: $laptop) {
+				position: relative
+
+			}
+			.pull-right{
+				li:first-of-type{
+					margin-top: 3px;
+					@media (max-width: $laptop) {
+						margin: 0 auto 15px;
+					}
+				}
+			}
+			.dropdown-menu {
+				@media (max-width: $laptop) {
+					position: absolute;
+				}
+			}
+			.navbar-text {
+				ul li {
+					list-style : none;
+					@extend .pull_left;
+					@extend .text-center;
+					a {
+						margin : auto 20px;
+						@extend .relative;
+						@extend .inline-block;
+						span.red-dot {
+							@extend .absolute;
+							right : -6px;
+							bottom : -2px;
+							height : 8px;
+							width : 8px;
+							background : $red;
+							@include border-radius(100%, 100%, 100%, 100%);
+							margin : 2px;
+						}
+					}
+					.dropdown-toggle {
+						background-color : transparent;
+						border : none;
+						color : $white;
+						font-size : $font-16;
+						font-weight: $weight_700;
+						&:focus {
+							box-shadow : none;
+						}
+						&:after {
+							margin : 0;
+						}
+					}
+					.user-img {
+						height : 36px;
+						width : 36px;
+						img {
+							@include border-radius(50%, 50%, 50%, 50%);
+							height : 36px;
+							width : 36px;
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,50 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th data-field="title">Tour</th>
+      <th data-field="heading">Length</th>
+      <th data-field="summary">Availability</th>
+      <th data-field="summary">Price From</th>
+      <th></th>
+    </tr>
+  </thead>
+    <tbody>
+      <tr  class=""
+      *ngFor="let page of pageArr; let i = index;"
+      [attr.data-page-id]="page._id"
+      [ngClass]="{'red accent-1': page.deleted, 'red lighten-4': page.active === false}"
+      [hidden]="page.deleted">
+      <td class="tour-detail">
+        <span *ngIf="!page.images?.length"><img src="images/random.png" /></span>
+        <span *ngIf="page.images?.length > 0 && page.featuredImage?.url"><img src="uploads/images/{{page.featuredImage?.id}}-40-40.jpg" /></span>
+        <span *ngIf="page.images?.length > 0 && !page.featuredImage?.url"><img src="uploads/images/{{page.images[0]?.id}}-40-40.jpg" /></span>
+        <div>
+          <h5><a [routerLink]="['/tours/view', page._id]">{{page.name}}</a></h5>
+          <p>{{page.destination}}</p>
+        </div>
+      </td>
+      <td>{{page.noOfDays}} Days <span *ngIf="page.noOfNights">{{page.noOfNights}} Nights</span> </td>
+      <td><span [innerHTML]="(page.totalSeats - page.totalSoldSeats)"></span>/{{page.totalSeats}}</td>
+      <td>${{page.dateRange[0]?.price[0]?.adult}}</td>
+      <td class="action-td">
+        <div class="btn-group" *ngIf="showAction == true">
+          <button type="button" class="btn btn-secondary"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Action
+          </button>
+          <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split">
+            <span class="sr-only">Toggle Dropdown</span>
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" *ngIf="canEdit(page)" (click)="editTour(page)">Edit</a>
+            <a class="dropdown-item" *ngIf="canDelete(page)" (click)="deleteTour(page, i)">Delete</a>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr *ngIf="itemsSize==0">
+      <td colspan="4">
+        No records have been added yet.
+      </td>
+    </tr>
+  </tbody>
+</table>

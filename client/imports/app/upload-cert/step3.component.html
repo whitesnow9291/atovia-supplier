@@ -1,0 +1,123 @@
+<main *ngIf="!! user">
+  <div class="login-wrap signup-wrap" >
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-6 side-images">
+          <div class="table-wrapper">
+            <div class="center-content">
+              <h3 class="title-line">ATORVIA</h3>
+              <p>Mauris non tempor quam, et lacinia sapien. Mauris accumsan eros eget libero posuere vulputate. Etiam elit elit, elementum sed varius at, adipiscing vitae est.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 sign-step1">
+          <div class="table-wrapper side-form">
+            <div class="center-content login-form">
+              <form [formGroup]="bankDetailsForm" #f="ngForm">
+                <div class="white-bg">
+                  <h3>Welcome onboard,</h3>
+                  <h3>{{user.profile?.supplier.companyName}}</h3>
+                  <p>Vestibulum rutrum quam vitae fringilla tincidunt. Suspendisse nec tortor urna. Ut laoreet sodales nisi, quis iaculis nulla iaculis vitae. Donec sagittis faucibus lacus eget blandit.</p>
+                </div>
+                <div class="grey-bg">
+                  <ul>
+                    <li class="completed">
+                      <span>1</span>
+                      <p>Agent Certificate</p>
+                    </li>
+                    <li class="completed">
+                      <span>2</span>
+                      <p>ID Verification</p>
+                    </li>
+                    <li>
+                      <span>3</span>
+                      <p>Bank Details</p>
+                    </li>
+                  </ul>
+                  <div class="form-group">
+    								<div class="row">
+    									<div class="col-sm-12">
+    										<label for="CompanyName">Beneficiary Name</label>
+    										<div class="input-wrap">
+    											<input type="text" class="form-control" id="CompanyName" placeholder="Beneficiary Name" formControlName="accountName"/>
+    										</div>
+                        <div class='form-text error has-error' *ngIf='bankDetailsForm.controls.accountName.errors && bankDetailsForm.controls.accountName.touched'>
+    											<div [hidden]="!bankDetailsForm.controls['accountName'].errors.required">You have to fill in Beneficiary Name to continue.</div>
+    			                <div [hidden]="!bankDetailsForm.controls['accountName'].errors.minlength">Min 5 characters required.</div>
+    			                <div [hidden]="!bankDetailsForm.controls['accountName'].errors.maxlength">Max 30 characters allowed.</div>
+    										</div>
+    									</div>
+    								</div>
+    							</div>
+                  <div class="form-group">
+    								<div class="row">
+    									<div class="col-sm-12">
+    										<label for="number">Account Number</label>
+    										<div class="input-wrap">
+    											<input type="text" class="form-control" id="number" placeholder="Account Number" formControlName="accountNumber"/>
+    										</div>
+                        <div class='form-text error has-error' *ngIf='bankDetailsForm.controls.accountNumber.errors && bankDetailsForm.controls.accountNumber.touched'>
+    											<div [hidden]="!bankDetailsForm.controls['accountNumber'].errors.required">You have to fill in Account Number to continue.</div>
+    			                <div [hidden]="!bankDetailsForm.controls['accountNumber'].errors.minlength">Min 8 digits required.</div>
+    			                <div [hidden]="!bankDetailsForm.controls['accountNumber'].errors.maxlength">Max 20 digits allowed.</div>
+    										</div>
+    									</div>
+    								</div>
+    							</div>
+                  <div class="form-group">
+    								<div class="row">
+    									<div class="col-sm-12">
+    										<label for="name">Bank Name</label>
+    										<div class="input-wrap">
+    											<input type="text" class="form-control" id="name" placeholder="Bank Name" formControlName="bankName"/>
+    										</div>
+                        <div class='form-text error has-error' *ngIf='bankDetailsForm.controls.bankName.errors && bankDetailsForm.controls.bankName.touched'>
+    											<div [hidden]="!bankDetailsForm.controls['bankName'].errors.required">You have to fill in Bank Name to continue.</div>
+    			                <div [hidden]="!bankDetailsForm.controls['bankName'].errors.minlength">Min 8 characters required.</div>
+    			                <div [hidden]="!bankDetailsForm.controls['bankName'].errors.maxlength">Max 50 characters allowed.</div>
+    										</div>
+    									</div>
+    								</div>
+    							</div>
+                  <div class="form-group">
+    								<div class="row">
+    									<div class="col-sm-12">
+    										<label for="address">Bank Address</label>
+    										<div class="input-wrap">
+    											<input type="text" class="form-control" id="address" placeholder="Bank Address" formControlName="bankAddress"/>
+    										</div>
+                        <div class='form-text error has-error' *ngIf='bankDetailsForm.controls.bankAddress.errors && bankDetailsForm.controls.bankAddress.touched'>
+    											<div [hidden]="!bankDetailsForm.controls['bankAddress'].errors.required">You have to fill in Bank Address to continue.</div>
+    			                <div [hidden]="!bankDetailsForm.controls['bankAddress'].errors.minlength">Min 8 characters required.</div>
+    			                <div [hidden]="!bankDetailsForm.controls['bankAddress'].errors.maxlength">Max 255 characters allowed.</div>
+    										</div>
+    									</div>
+    								</div>
+    							</div>
+                  <div class="form-group">
+    								<div class="row">
+    									<div class="col-sm-12">
+    										<label for="swift">Bank Swift Code</label>
+    										<div class="input-wrap">
+    											<input type="text" class="form-control" id="swift" placeholder="Bank Swift Code" formControlName="swiftCode"/>
+    										</div>
+                        <div class='form-text error has-error' *ngIf='bankDetailsForm.controls.swiftCode.errors && bankDetailsForm.controls.bankAddress.touched'>
+    											<div [hidden]="!bankDetailsForm.controls['swiftCode'].errors.required">You have to fill in Bank Swift Code to continue.</div>
+    			                <div [hidden]="!bankDetailsForm.controls['swiftCode'].errors.minlength">Min 8 characters required.</div>
+    			                <div [hidden]="!bankDetailsForm.controls['swiftCode'].errors.maxlength">Max 11 characters allowed.</div>
+    										</div>
+    									</div>
+    								</div>
+    							</div>
+                  <div class="form-group">
+                    <button type="button" class="btn green-btn full-btn" (click)="saveStep3()" >Finish</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,27 @@
+<div class="income-statics">
+  <div class="row">
+    <div class="col-md-8">
+      <h3>Income Statistics</h3>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group" style="width: 100px; float: left;">
+        <select class="form-control" #month [(ngModel)]="filter.month" (change)="showChart()">
+          <option *ngFor="let month of monthsArr; let i = index;" [value]="i">{{month}}</option>
+        </select>
+      </div>
+
+      <div class="form-group" style="width: 100px; float: left; margin-left: 20px;">
+        <select class="form-control" #year [(ngModel)]="filter.year" (change)="showChart()">
+          <option *ngFor="let year of [2017, 2018, 2019, 2020];">{{year}}</option>
+        </select>
+      </div>
+
+      <div style="clear: both;"></div>
+    </div>
+    <div class="col-sm-12">
+      <div class="graph-img">
+        <canvas id="reportChart" width="868" height="206"></canvas>
+      </div>
+    </div>
+  </div>
+</div>

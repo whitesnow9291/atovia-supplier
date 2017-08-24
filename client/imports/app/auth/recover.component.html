@@ -1,0 +1,57 @@
+<div class="login-wrap forgot-pass">
+    	<div class="container-fluid">
+        	<div class="row">
+            	<div class="col-md-6 side-images">
+                	<div class="table-wrapper">
+                    	<div class="center-content">
+                        	<h3 class="title-line">ATORVIA</h3>
+                            <p>Mauris non tempor quam, et lacinia sapien. Mauris accumsan eros eget libero posuere vulputate. Etiam elit elit, elementum sed varius at, adipiscing vitae est.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                	<div class="table-wrapper side-form">
+                    	<div class="center-content login-form">
+                        	<form [formGroup]="recoverForm" #f="ngForm" (ngSubmit)="recover()" id="input-icon">
+                            	<div class="form-group forgot-pass">
+                                	<h4>Forgot Password</h4>
+                                    <p>Enter the email you used to sign up below, we will send you a link to reset shortly.
+                                   </p>
+                                </div>
+                                <div class="form-group">
+                                	<label for="loginEmail">Email</label>
+                                    <div class="input-wrap">
+                                    	<input type="email" class="form-control" id="loginEmail" placeholder="Email" formControlName="email"/>
+                                        <span><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                                    </div>
+                                </div>
+                                <div *ngIf="recoverForm.controls['email'].errors && recoverForm.controls['email'].touched" class="has-error">
+                                    <div *ngIf="recoverForm.controls.email.hasError('required')">You have to fill in Email to proceed.</div>
+                                    <div *ngIf="recoverForm.controls.email.hasError('minlength')">Min 5 characters required.</div>
+                  									<div *ngIf="recoverForm.controls.email.hasError('maxlength')">Max 50 characters allowed.</div>
+                                    <div *ngIf="recoverForm.controls.email.hasError('validateEmail')">Invalid Email address.</div>
+                                </div>
+                                <div class="form-group">
+                                	<button type="submit" class="btn green-btn full-btn" [disabled]="!recoverForm.valid">Reset Password</button>
+                                </div>
+
+                                <div class="form-group add-account">
+                                	<div class="row">
+                                    	<div class="col-7">
+                                        	<a [routerLink]="['/login']">Remember your password?</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <!--<div [hidden]="error == ''">
+                              <p class="md-warn" layout="row" layout-fill layout-padding layout-margin>
+                                <p class="md-body-1">{{ error }}</p>
+                              </p>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

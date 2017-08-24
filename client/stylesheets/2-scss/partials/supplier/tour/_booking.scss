@@ -1,0 +1,172 @@
+.allbooking {
+	.green-anchor span {
+		margin-right: 5px;
+  }
+	.booking-details {
+		margin-top: 25px;
+		@include border-all (1px, solid, $border-color);
+		background: $white;
+		width: $full;
+		@extend .pull_left;
+		.booking-img {
+			width: 32.5%;
+			@extend .pull_left;
+			height: 300px;
+			@media (max-width: $laptop) {
+				width: $full;
+				text-align: center;
+      }
+			img {
+				height: $full;
+      }
+    }
+		.booking-desc {
+			width: 66.5%;
+			@extend .pull_left;
+			padding: 25px 50px 25px 40px;
+			@media (max-width: $laptop) {
+				width: $full;
+      }
+			@media (max-width: $medium-phone) {
+				padding: 10px;
+      }
+
+			.hdr {
+				@include border-bottom(1px, solid, $border-color);
+				margin-bottom: 25px;
+				@media (max-width: $laptop) {
+					text-align: center;
+        }
+				h3 {
+					font-weight: $weight_700;
+					font-size: $font-22;
+					margin-bottom: 5px;
+					color: $label-color;
+					@media (max-width: $medium-phone) {
+						font-size: $font-20;
+          }
+        }
+				p {
+					font-size: $font-18;
+					margin-bottom: 25px;
+					color: $grey-anchor;
+					span {
+						margin-right: 5px;
+						color: $green-anchor;
+          }
+        }
+      }
+			.booking-info {
+				h6 {
+					font-size: $font-16;
+					color: $grey-anchor;
+        }
+				p {
+					color: $label-color;
+					font-weight: $weight_700;
+					font-size: $font-18;
+					@media (max-width: $medium-phone) {
+						float: left;
+          }
+					.green-label {
+						@include border-radius(3px, 3px, 3px, 3px);
+						@media (max-width: $medium-phone) {
+							margin: 5px 0;
+							float: left;
+							width: 45%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+	.travler-wrap {
+		width: $full;
+		@extend .pull_left;
+		margin-top: 25px;
+		ul  {
+			@include border-all (1px, solid, $border-color);
+			li {
+				@include border-bottom(1px, solid, $border-color);
+				background: $white;
+				padding: 26px 20px;
+				@media (max-width: $small_phone) {
+					padding: 20px 15px;
+        }
+				h3 {
+					font-weight: $weight_700;
+					font-size: $font-22;
+					color: $label-color;
+					@extend .relative;
+					margin-bottom: 30px;
+					span {
+						@extend .absolute;
+						right: -20px;
+						top: -15px;
+						padding: 10px;
+						@media (max-width: $small_phone) {
+							padding: 5px;
+							right: -16px;
+            }
+          }
+        }
+				h6 {
+					font-size: $font-14;
+					color: $grey-anchor;
+        }
+				p {
+					color: $label-color;
+					font-weight: $weight_700;
+					font-size: $font-16;
+        }
+      }
+			li:last-of-type {
+				border: none;
+      }
+    }
+		.payment-wrap {
+			@include border-all (1px, solid, $border-color);
+			width: $full;
+			@extend .pull_left;
+			background : $white;
+			margin-bottom: 29px;
+			@media (max-width: $ipad) {
+				margin-top: 29px;
+      }
+
+			p {
+				font-size: $font-14;
+				color: $grey-anchor;
+      }
+			h3 {
+				font-weight: $weight_700;
+				font-size: $font-16;
+				color: $label-color;
+				span {
+					color: $light-blue;
+					margin-right: 23px;
+        }
+      }
+			.pay-method {
+				padding: 21px 25px;
+				@include border-bottom(1px, solid, $border-color);
+      }
+			.special-req {
+				padding: 21px 25px;
+      }
+    }
+		.red-btn {
+			margin-top: 25px;
+    }
+  }
+}
+.pagination-wrap {
+	button.green-btn {
+		padding: 15px 25px;
+		width: auto;
+		@media (max-width: $small-grid) {
+			padding: 10px 15px;
+    }
+  }
+}

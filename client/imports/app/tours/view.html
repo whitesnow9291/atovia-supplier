@@ -1,0 +1,196 @@
+<header-main></header-main>
+<main class="tour-view">
+	<div class="user-head" style="padding-top: 30px; padding-bottom: 30px; height: auto;" *ngIf="!! tour">
+    <div class="container">
+      <div class="row justify-content-sm-center">
+        <div class="col-xl-10">
+          <div class="row sort-bar">
+            <div class="col-md-12">
+              <h4>{{tour.name}}</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+	<!--link-content-->
+	<section class="right-wrap tour-detail step-1 step-6" *ngIf="!! tourDetails">
+		<div class="grey-bg">
+	    <div class="container">
+	      <div class="row justify-content-sm-center">
+	        <div class="col-xl-8">
+	          <a [routerLink]="['/tours/list']" class="green-anchor"><span><i class="fa fa-angle-left" aria-hidden="true"></i></span>&nbsp;See all tours</a>
+	        </div>
+					<div class="col-xl-2" *ngIf="canEdit(tour)">
+						<button class="cancel btn grey-btn" (click)="editTour(tour)">Edit</button>
+					</div>
+					<div class="col-xl-2" *ngIf="canDelete(tour)">
+						<button class="cancel btn grey-btn" (click)="deleteTour(tour)">Delete</button>
+					</div>
+					<div class="col-xl-10 review-content">
+						<div class="tour-detail">
+							<div class="row">
+								<div class="col-sm-12">
+									<h3>Tour Details</h3>
+									<ul>
+										<li>
+											<p>Pace</p>
+											<h5>{{tourDetails.tourPace}}</h5>
+										</li>
+										<li>
+											<p>Type</p>
+											<h5>{{tourDetails.tourType}}</h5>
+										</li>
+										<li>
+											<p>Total Meals</p>
+											<h5>{{tourDetails.totalMeals}}</h5>
+										</li>
+										<li>
+											<p>TourGuide</p>
+											<h5 *ngIf="tourDetails.hasGuide">Included</h5>
+											<h5 *ngIf="!tourDetails.hasGuide">Not Included</h5>
+										</li>
+									</ul>
+									<p [innerHTML]="tourDetails.description | nl2br"></p>
+								</div>
+							</div>
+						</div>
+						<div class="tour-schedule" *ngIf="tourDetails.dateRange.length > 0">
+							<h3>Tour Schedule</h3>
+							<div class="row step2-form"><div class="col-sm-12">
+								<div class="table-wrapper table-responsive status-table" style="height: 351px;">
+									<table class="table table-striped" style="width: 100%; max-width: 100%;">
+											<thead>
+												<tr>
+													<th>Start Date</th>
+													<th>End Date</th>
+													<th>Seats</th>
+													<th>Price($)</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr *ngFor="let item of tourDetails.dateRange; let i=index;">
+													<td>{{item.startDate | date: 'dd/MM/yyyy'}}</td>
+													<td>{{item.endDate | date: 'dd/MM/yyyy'}}</td>
+													<td>{{item.numOfSeats}}</td>
+													<td>
+														${{item.price[0]?.adult}}
+														<span>
+															<button (click)="selDateRange=item; detectChanges();" type="button" data-toggle="modal" data-target="#myModal"><i class="fa fa-info-circle" aria-hidden="true"></i></button>
+														</span>
+													</td>
+												</tr>
+
+											</tbody>
+									</table>
+									<div class=" modal fade bd-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										<div class="modal-dialog" role="document">
+											<div class="modal-content ">
+												<div class="modal-header">
+													<h5 class="modal-title" id="exampleModalLabel">Schedule Pricing</h5>
+												</div>
+												<div class="modal-body">
+													<table class="table hover-table" *ngIf="selDateRange">
+														<thead>
+															<tr>
+																<th>People</th>
+																<th>Adult</th>
+																<th>Child</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr *ngFor="let row of selDateRange.price">
+																<td>{{row.numOfPersons}}</td>
+																<td>${{row.adult}}</td>
+																<td>${{row.child}}</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div></div>
+						</div>
+						<div class="tour-itinerary">
+							<div class="row">
+								<div class="col-sm-12">
+									<h3>Tour Itinerary</h3>
+									<div class="day-box">
+										<div class="day-wrap green-icon {{item.icon}}" *ngFor="let item of tourDetails.itenerary; let i=index;">
+											<h2>Day <span [innerHTML]="i+1"></span> : {{item.title}}</h2>
+											<p [innerHTML]="item.description | nl2br"></p>
+											<div class="sub-head">
+												<h4>Hotel</h4>
+												<p *ngIf="!! item.hotelName">{{item.hotelName}}</p>
+												<p *ngIf="! item.hotelName && !! item.hotelType">{{item.hotelType}}</p>
+												<p *ngIf="! item.hotelName && ! item.hotelType">0 Nights</p>
+											</div>
+											<div class="sub-head">
+												<h4>Meals</h4>
+												<p>
+													<span class="radio-wrap">
+														<img src="images/imgpsh_fullsize.png" alt="" *ngIf="!item.hasBreakfast">
+														<img src="images/imgpsh_fullsize(2).png" alt="" *ngIf="item.hasBreakfast">
+														<label for="breakFast" class="radio-custom-label">Breakfast</label>
+													</span>
+													<span class="radio-wrap">
+														<img src="images/imgpsh_fullsize.png" alt="" *ngIf="!item.hasLunch">
+														<img src="images/imgpsh_fullsize(2).png" alt="" *ngIf="item.hasLunch">
+														<label for="lunch" class="radio-custom-label">Lunch</label>
+													</span>
+													<span class="radio-wrap">
+														<img src="images/imgpsh_fullsize.png" alt="" *ngIf="!item.hasDinner">
+														<img src="images/imgpsh_fullsize(2).png" alt="" *ngIf="item.hasDinner">
+														<label for="dinner" class="radio-custom-label">Dinner</label>
+													</span>
+												</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="gallery-wrap">
+							<div class="row">
+								<div class="col-sm-12">
+									<h3>Gallery</h3>
+								</div>
+								<div class="col-sm-12 second-row">
+									<div class="img-wrap" *ngFor="let image of tourDetails.images;">
+										<img src="uploads/images/{{image.id}}-300-220.jpg" alt="{{image.name}}" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="inclusive-policy">
+							<div class="row">
+								<div class="col-sm-12">
+									<h3>Inclusion & Policy</h3>
+									<h4>Included:</h4>
+									<ul>
+										<li *ngFor="let text of tourDetails.inclusions;">{{text}}</li>
+									</ul>
+									<h4>Excluded:</h4>
+									<ul>
+										<li *ngFor="let text of tourDetails.exclusions">{{text}}</li>
+									</ul>
+									<h4>Attached Policies</h4>
+									<p *ngIf="tourDetails.cancellationPolicy">
+										<span><i class="fa fa-file-pdf-o" aria-hidden="true"></i></span>
+										<a href="{{tourDetails.cancellationPolicy.url}}" download>{{tourDetails.cancellationPolicy.name}}</a>
+									</p>
+									<p *ngIf="tourDetails.refundPolicy">
+										<span><i class="fa fa-file-pdf-o" aria-hidden="true"></i></span>
+										<a href="{{tourDetails.refundPolicy.url}}" download>{{tourDetails.refundPolicy.name}}</a>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</main>

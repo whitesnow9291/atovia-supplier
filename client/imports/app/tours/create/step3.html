@@ -1,0 +1,203 @@
+<header-main></header-main>
+<main>
+  <div class="grey-bg step-1 step-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <h3 class="tour-head">New Tour</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <ul class="tab-list">
+          <li class="completed">
+            <a [routerLink]="['/tours/create/step1']">
+              <span><i class="fa fa-check" aria-hidden="true"></i></span>
+              <div class="tab-detail">
+                <h4>Tour Details</h4>
+                <p>General tour information</p>
+              </div>
+            </a>
+          </li>
+          <li class="completed">
+            <a [routerLink]="['/tours/create/step2']">
+              <span><i class="fa fa-check" aria-hidden="true"></i></span>
+              <div class="tab-detail">
+                <h4>Tour Schedule</h4>
+                <p>Tour availability & Prices</p>
+              </div>
+            </a>
+          </li>
+          <li class="active">
+            <a href="javascript:void(0)">
+              <span>3</span>
+              <div class="tab-detail">
+                <h4>Tour Itinerary</h4>
+                <p>Day by day schedule</p>
+              </div>
+            </a>
+          </li>
+          <li class="disabled">
+            <a href="javascript:void(0)">
+              <span>4</span>
+              <div class="tab-detail">
+                <h4>Tour Gallery</h4>
+                <p>Gorgeous images</p>
+              </div>
+            </a>
+          </li>
+          <li class="disabled">
+            <a href="javascript:void(0)">
+              <span>5</span>
+              <div class="tab-detail">
+                <h4>Inclusion & Policy</h4>
+                <p>Last thing customer need to know</p>
+              </div>
+            </a>
+          </li>
+          <li class="disabled">
+            <a href="javascript:void(0)">
+              <span>6</span>
+              <div class="tab-detail">
+                <h4>Review</h4>
+                <p>Make sure everything is correct</p>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-8">
+        <form>
+          <section class="right-wrap tour-detail">
+            <div class="tour-header">
+              <h5>Step 3</h5>
+              <h3>Tour Itinerary</h3>
+              <p>Mauris non tempor quam, et lacinia sapien. Mauris accumsan eros eget libero posuere vulputate. Etiam elit elit, elementum sed varius at, adipiscing vitae est. </p>
+            </div>
+            <div class="steps step1-form">
+              <form [formGroup]="step3Form" #f="ngForm">
+              <div class="panel-group" id="accordion">
+                <div formArrayName="itenerary">
+                  <div *ngFor="let row of step3Form.controls.itenerary.controls; let i=index">
+                    <div class="panel panel-default" [ngClass]="{'last-panel': (i+1)==noOfDays}">
+                      <div class="panel-heading" data-toggle="collapse" data-parent="#accordion" attr.href="#collapse{{i}}">
+                        <h4 class="panel-title expand">
+                          <div class="right-arrow pull-right"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+                          <a href="javascript:void(0);">Day {{i+1}}</a>
+                        </h4>
+                      </div>
+                      <div [id]="'collapse'+(i)" class="panel-collapse collapse">
+                        <div class="panel-body" [formGroupName]="i">
+                          <div class="row">
+                            <!--<div class="col-sm-12">
+                              <div class="form-group">
+                                <input type="hidden" formControlName="icon" />
+                                <label>Icon</label>
+                                <ul class="icon-list">
+                                  <li [ngClass]="{'active': icon.css==step3Form.value.itenerary[i].icon}" *ngFor="let icon of icons" (click)="setIconClass(i, icon.css)">
+                                    <a href="javascript:void(0)"><img [src]="icon.url" alt="" /></a>
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>-->
+                            <div class="col-sm-12">
+                              <div class="form-group">
+                                <label for="Title">Title *</label>
+                                <div class="input-wrap">
+                                  <input type="text" class="form-control" id="Title" placeholder="Title" formControlName="title"/>
+                                </div>
+                                <div *ngIf="step3Form.controls.itenerary.controls[i].controls.title.errors && step3Form.controls.itenerary.controls[i].controls.title.touched" class="has-error">
+                                  <div *ngIf="step3Form.controls.itenerary.controls[i].controls.title.hasError('required')">You have to fill in Title.</div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-sm-12">
+                              <div class="form-group">
+                                <label for="Description">Description *</label>
+                                <div class="input-wrap">
+                                  <textarea class="form-control" id="Description" placeholder="Description" formControlName="description"></textarea>
+                                </div>
+                                <div *ngIf="step3Form.controls.itenerary.controls[i].controls.description.errors && step3Form.controls.itenerary.controls[i].controls.description.touched" class="has-error">
+                                  <div *ngIf="step3Form.controls.itenerary.controls[i].controls.description.hasError('required')">You have to fill in Description.</div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-sm-12">
+                              <div class="form-group">
+                                <label for="rating">Hotel *</label>
+                                <div class="row">
+                                  <div class="col-sm-4">
+                                    <div class="form-group">
+                                      <div class="select-style">
+                                        <select class="select" formControlName="hotelType">
+                                          <option>1 Star</option>
+                                          <option>2 Star</option>
+                                          <option>3 Star</option>
+                                          <option>4 Star</option>
+                                          <option>5 Star</option>
+                                          <option>6 Star</option>
+                                          <option>No Hotel Included</option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-1">
+                                    <div class="form-group">
+                                      <div class="option-or">or</div>
+                                    </div>
+                                  </div>
+                                  <div class="col-sm-7">
+                                    <div class="form-group">
+                                      <div class="input-wrap">
+                                        <div class="input-wrap">
+                                          <input type="text" class="form-control" id="hotelName" placeholder="Specfic Hotel Name" formControlName="hotelName" />
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-sm-12">
+                              <div class="form-group">
+                                <label for="rating">Meals</label>
+                                <div class="row">
+                                  <div class="col-md-4">
+                                    <div class="radio-wrap">
+                                      <input [id]="'radio-1-'+i" class="radio-custom" name="radio-group" type="checkbox" formControlName="hasBreakfast">
+                                      <label [for]="'radio-1-'+i" class="radio-custom-label">Breakfast</label>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-4">
+                                    <div class="radio-wrap">
+                                      <input [id]="'radio-2-'+i" class="radio-custom" name="radio-group" type="checkbox" formControlName="hasLunch">
+                                      <label [for]="'radio-2-'+i" class="radio-custom-label">Lunch</label>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-4">
+                                    <div class="radio-wrap">
+                                      <input [id]="'radio-3-'+i" class="radio-custom" name="radio-group" type="checkbox" formControlName="hasDinner">
+                                      <label [for]="'radio-3-'+i" class="radio-custom-label">Dinner</label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          </section>
+          <div class="form-group  bottom-btn">
+          <button type="button" class="btn grey-btn pull-left" [routerLink]="['/tours/create/step2']"><span><i class="fa fa-angle-left" aria-hidden="true"></i></span>Back</button>
+          <button type="button" class="btn green-btn pull-right" (click)="step3()">Next<span><i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
+          </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

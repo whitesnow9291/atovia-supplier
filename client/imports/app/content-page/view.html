@@ -1,0 +1,6 @@
+<header-main ></header-main>
+
+<div *ngIf="!!page">
+  <h3 class="heading content-page-heading">{{page.heading}}</h3>
+  <p class="main-contents content-page-content" [innerHTML]="page.contents"></p>
+</div>

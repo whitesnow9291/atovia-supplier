@@ -1,0 +1,59 @@
+.step-5 {
+	.input-group-btn {
+		padding: 6px;
+		button.green-btn {
+			border-radius: 4px!important;
+			width: 100px;
+			padding: 14px 0;
+    }
+  }
+	.tour-detail .steps .form-group  {
+		label	{
+			width: $full;
+			span {
+				margin-left: 35px;
+				text-transform: none;
+				@media (max-width: $laptop) {
+					display: block;
+					margin: 0;
+        }
+      }
+			span.pull_right {
+				@media (max-width: $laptop) {
+					float: left!important;
+        }
+      }
+    }
+		.input-wrap .input-group {
+			@include border-all(1px, solid, $border-color);
+			@media (max-width: $small_phone) {
+				overflow: hidden;
+			}
+			input {
+				border-right: 0;
+				opacity: 0;
+      }
+			span {
+				border: 0;
+				left: 15px;
+				@extend .absolute;
+				text-align: left;
+				top: 17px;
+				width: auto;
+				font-size: $font-16;
+				font-weight: $weight_400;
+				color: $light-grey ;
+				@media (max-width: $medium-phone) {
+					width: 180px;
+					height: 21px;
+					overflow: hidden;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+        }
+      }
+    }
+		a span {
+			color: $green-anchor;
+		}
+  }
+}

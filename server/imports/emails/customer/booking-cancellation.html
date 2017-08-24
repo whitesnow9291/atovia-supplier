@@ -1,0 +1,19 @@
+Hi ${booking.user.firstName}, <br />
+Your booking request for tour name ${booking.tour.name} has been denied. <br />
+Your refund will be released soon by ${booking.tour.supplier.companyName}. <br />
+Please find tour details below: <br />
+<br />
+<ul>
+<li>Booking ID: ${booking.uniqueId}</li>
+<li>Departure: ${booking.tour.departure}</li>
+<li>Destination: ${booking.tour.destination}</li>
+<li>Start Date: ${getFormattedDate(booking.startDate)} </li>
+<li>End Date: ${getFormattedDate(booking.endDate)} </li>
+<li>Num of Travellers: ${booking.numOfTravellers} </li>
+<li>Total Price: ${booking.totalPrice}</li>
+<li>Cancellation Date: ${getFormattedDate(booking.cancelledAt)}</li>
+<li>Cancellation Reason: ${booking.cancellationReason}.</li>
+<li>Cancellation Comments: ${booking.cancellationComments}</li>
+<li> View Link: <a href="${customerAppUrl}/bookings/view/${booking._id}">${booking.tour.name}</a> </li>
+</ul>
+<p>Team Atorvia</p>

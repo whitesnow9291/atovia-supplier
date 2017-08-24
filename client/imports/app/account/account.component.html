@@ -1,0 +1,336 @@
+<header-main></header-main>
+<main>
+  <div class="user-head user-profile-head">
+    <div class="container">
+          <div class="row justify-content-sm-center">
+              <div class="col-xl-10">
+                  <div class="profile">
+                    <div class="img-wrap">
+                      <span class="user-img">
+                          <img src="images/user.png" alt="" *ngIf="! user?.profile.image?.url" />
+                          <img src="uploads/images/{{user?.profile.image.id}}-100-100.jpg" alt="" *ngIf="!! user?.profile.image?.url" />
+
+                        </span>
+                        <div class="image-input">
+                            <span class="update-img">
+                                <i class="fa fa-pencil" aria-hidden="true" (click)="fileInput2.click();"></i>
+                            </span>
+                            <input #fileInput2 type="file" (change)="onFileSelect($event)" id="inputFile" accept="image/* " style="line-height: initial;">
+                        </div>
+                      </div>
+                      <div class="user-deatil">
+                          <h4>{{user?.profile.supplier?.companyName}}</h4>
+                          <p>Member since {{user?.createdAt | date}}</p>
+                          <p *ngIf="!! user?.profile?.address?.suburb || !! user?.profile?.address?.state || !! user?.profile?.address?.country">{{user?.profile?.address?.suburb}},
+                            {{user?.profile?.address?.state}},
+                            {{user?.profile?.address?.country}}</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+  </div>
+  <div class="grey-bg user-profile">
+    <div class="container">
+      <div class="row justify-content-sm-center">
+        <div class="col-xl-10">
+          <div class="row">
+            <div class="col-md-7">
+              <div class="right-wrap">
+                <div class="update-detail">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <h3>Company Details</h3>
+                      <p>Tell us more about you</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="detail-form">
+                  <form [formGroup]="profileForm" #f="ngForm">
+                    <div class="inner-wrap">
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <div class="form-group">
+                            <label for="CompanyName">COMPANY NAME *</label>
+                            <div class="input-wrap">
+                              <input type="text" class="form-control" id="CompanyName" placeholder="Company Name" formControlName="companyName" />
+                            </div>
+                            <div class='form-text error has-error' *ngIf="profileForm.controls.companyName.errors && profileForm.controls.companyName.touched">
+                              <div *ngIf="profileForm.controls.companyName.hasError('required')">You have to fill in Company Name to proceed.</div>
+                              <div *ngIf="profileForm.controls.companyName.hasError('minlength')">Min 2 characters required.</div>
+                              <div *ngIf="profileForm.controls.companyName.hasError('maxLength')">Max 50 characters allowed.</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="form-group">
+                            <label for="userEmail">EMAIL *</label>
+                            <div class="input-wrap">
+                              <input type="email" class="form-control" id="userEmail" placeholder="Email Address" formControlName="email"/>
+                            </div>
+                            <div class='form-text error has-error' *ngIf="profileForm.controls.email.errors && profileForm.controls.email.touched">
+                              <div *ngIf="profileForm.controls.email.hasError('required')">You have to fill in Email to proceed.</div>
+                              <div *ngIf="profileForm.controls.email.hasError('minlength')">Min 5 characters required.</div>
+                              <div *ngIf="profileForm.controls.email.hasError('maxlength')">Max 50 characters allowed.</div>
+                              <div *ngIf="profileForm.controls.email.hasError('email')">Invalid email address.</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <div class="form-group">
+                            <label for="phnNumber">PHONE NUMBER *</label>
+                            <div class="input-wrap">
+                              <input type="text" class="form-control" id="phnNumber" placeholder="Phone Number" formControlName="contact"/>
+                            </div>
+                            <div class='form-text error has-error' *ngIf="profileForm.controls.contact.errors && profileForm.controls.contact.touched">
+                              <div *ngIf="profileForm.controls.contact.hasError('minlength')">Min 7 characters required.</div>
+                              <div *ngIf="profileForm.controls.contact.hasError('maxlength')">Max 15 characters allowed.</div>
+                              <div *ngIf="profileForm.controls.contact.hasError('validatePhoneNum')">Invalid Contact Number.</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="inner-wrap">
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <div class="form-group">
+                            <label for="address">ADDRESS LINE 1 *</label>
+                            <div class="input-wrap">
+                              <input type="text" class="form-control" id="address" placeholder="Address Line 1" formControlName="address1"/>
+                            </div>
+                            <div class='form-text error has-error' *ngIf="profileForm.controls.address1.errors && profileForm.controls.address1.touched">
+                              <div *ngIf="profileForm.controls.address1.hasError('required')">You have to fill in Address1 to proceed.</div>
+                              <div *ngIf="profileForm.controls.address1.hasError('minlength')">Min 2 characters required.</div>
+                              <div *ngIf="profileForm.controls.address1.hasError('maxLength')">Max 50 characters allowed.</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-lg-12">
+                          <div class="form-group">
+                            <label for="address">ADDRESS LINE 2</label>
+                            <div class="input-wrap">
+                              <input type="text" class="form-control" id="address" placeholder="Address Line 2" formControlName="address2"/>
+                            </div>
+                            <div class='form-text error has-error' *ngIf="profileForm.controls.address2.errors && profileForm.controls.address2.touched">
+                              <div *ngIf="profileForm.controls.address2.hasError('minlength')">Min 2 characters required.</div>
+                              <div *ngIf="profileForm.controls.address2.hasError('maxLength')">Max 50 characters allowed.</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="SUBURB">SUBURB/TOWN *</label>
+                            <div class="input-wrap">
+                              <input type="text" class="form-control" id="SUBURB" placeholder="Suburb" formControlName="suburb"/>
+                            </div>
+                            <div class='form-text error has-error' *ngIf="profileForm.controls.suburb.errors && profileForm.controls.suburb.touched">
+                              <div *ngIf="profileForm.controls.suburb.hasError('required')">You have to fill in Suburb to proceed.</div>
+                              <div *ngIf="profileForm.controls.suburb.hasError('minlength')">Min 2 characters required.</div>
+                              <div *ngIf="profileForm.controls.suburb.hasError('maxLength')">Max 30 characters allowed.</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="state">STATE/PROVINCE *</label>
+                            <div class="form-group">
+                              <div class="select-style">
+                                <select *ngIf="country.value == 'Australia'" class="select" formControlName="state" id="stateSelect">
+                                  <option>New South Wales</option>
+                                  <option>Queensland</option>
+                                  <option>Victoria</option>
+                                  <option>Tasmania</option>
+                                  <option>Western Australia</option>
+                                  <option>South Australia</option>
+                                </select>
+                                <input *ngIf="country.value != 'Australia'" type="text" class="form-control" id="state" placeholder="State" formControlName="state" #stateValue/>
+                              </div>
+                              <div class='form-text error has-error' *ngIf="profileForm.controls.state.errors && profileForm.controls.state.touched">
+                                <div *ngIf="profileForm.controls.state.hasError('required')">You have to choose State to proceed.</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="postCode">POST CODE *</label>
+                            <div class="input-wrap">
+                              <input type="text" class="form-control" id="postCode" placeholder="Post Code" formControlName="postCode"/>
+                            </div>
+                            <div class='form-text error has-error' *ngIf="profileForm.controls.postCode.errors && profileForm.controls.postCode.touched">
+                              <div *ngIf="profileForm.controls.postCode.hasError('minlength')">Min 4 characters required.</div>
+                              <div *ngIf="profileForm.controls.postCode.hasError('maxlength')">Max 12 characters allowed.</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="Country">COUNTRY *</label>
+                            <div class="form-group">
+                              <div class="select-style">
+                                <select class="select" formControlName="country" #country (change)="resetStateValue(country.value)">
+                                  <option></option>
+                                  <option *ngFor="let country of countries" [value]="country.name">{{country.name}}</option>
+                                </select>
+                              </div>
+                              <div class='form-text error has-error' *ngIf="profileForm.controls.country.errors && profileForm.controls.country.touched">
+                                <div *ngIf="profileForm.controls.country.hasError('required')">You have to choose Country to proceed.</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="update-detail">
+                      <div class="row">
+                        <div class="col-sm-12">
+                          <h3>Bank Details</h3>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="inner-wrap">
+                      <div class="row">
+      									<div class="col-md-6">
+      										<label for="beneficiary">Beneficiary Name</label>
+      										<div class="input-wrap">
+      											<input type="text" class="form-control" id="beneficiary" placeholder="Beneficiary Name" formControlName="accountName"/>
+      										</div>
+                          <div class='form-text error has-error' *ngIf='profileForm.controls.accountName.errors && profileForm.controls.accountName.touched'>
+      											<div [hidden]="!profileForm.controls['accountName'].errors.required">You have to fill in Beneficiary Name to continue.</div>
+      			                <div [hidden]="!profileForm.controls['accountName'].errors.minlength">Min 5 characters required.</div>
+      			                <div [hidden]="!profileForm.controls['accountName'].errors.maxlength">Max 30 characters allowed.</div>
+      										</div>
+      									</div>
+                        <div class="col-md-6">
+      										<label for="accountnumber">Account Number</label>
+      										<div class="input-wrap">
+      											<input type="text" class="form-control" id="accountnumber" placeholder="Account Number" formControlName="accountNumber"/>
+      										</div>
+                          <div class='form-text error has-error' *ngIf='profileForm.controls.accountNumber.errors && profileForm.controls.accountNumber.touched'>
+      											<div [hidden]="!profileForm.controls['accountNumber'].errors.required">You have to fill in Account Number to continue.</div>
+      			                <div [hidden]="!profileForm.controls['accountNumber'].errors.minlength">Min 8 digits required.</div>
+      			                <div [hidden]="!profileForm.controls['accountNumber'].errors.maxlength">Max 20 digits allowed.</div>
+      										</div>
+      									</div>
+      								</div>
+                      <div class="row">
+                        <div class="col-md-6">
+      										<label for="bankname">Bank Name</label>
+      										<div class="input-wrap">
+      											<input type="text" class="form-control" id="bankname" placeholder="Bank Name" formControlName="bankName"/>
+      										</div>
+                          <div class='form-text error has-error' *ngIf='profileForm.controls.bankName.errors && profileForm.controls.bankName.touched'>
+      											<div [hidden]="!profileForm.controls['bankName'].errors.required">You have to fill in Bank Name to continue.</div>
+      			                <div [hidden]="!profileForm.controls['bankName'].errors.minlength">Min 8 characters required.</div>
+      			                <div [hidden]="!profileForm.controls['bankName'].errors.maxlength">Max 50 characters allowed.</div>
+      										</div>
+      									</div>
+                        <div class="col-md-6">
+      										<label for="bankaddress">Bank Address</label>
+      										<div class="input-wrap">
+      											<input type="text" class="form-control" id="bankaddress" placeholder="Bank Address" formControlName="bankAddress"/>
+      										</div>
+                          <div class='form-text error has-error' *ngIf='profileForm.controls.bankAddress.errors && profileForm.controls.bankAddress.touched'>
+      											<div [hidden]="!profileForm.controls['bankAddress'].errors.required">You have to fill in Bank Address to continue.</div>
+      			                <div [hidden]="!profileForm.controls['bankAddress'].errors.minlength">Min 8 characters required.</div>
+      			                <div [hidden]="!profileForm.controls['bankAddress'].errors.maxlength">Max 255 characters allowed.</div>
+      										</div>
+      									</div>
+                      </div>
+                      <div class="row">
+      									<div class="col-md-12">
+      										<label for="swift">Bank Swift Code</label>
+      										<div class="input-wrap">
+      											<input type="text" class="form-control" id="swift" placeholder="Bank Swift Code" formControlName="swiftCode"/>
+      										</div>
+                          <div class='form-text error has-error' *ngIf='profileForm.controls.swiftCode.errors && profileForm.controls.bankAddress.touched'>
+      											<div [hidden]="!profileForm.controls['swiftCode'].errors.required">You have to fill in Bank Swift Code to continue.</div>
+      			                <div [hidden]="!profileForm.controls['swiftCode'].errors.minlength">Min 8 characters required.</div>
+      			                <div [hidden]="!profileForm.controls['swiftCode'].errors.maxlength">Max 11 characters allowed.</div>
+      										</div>
+      									</div>
+      								</div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div class="text-right btn-space">
+                          <button type="button" class="btn green-btn profile-btn" (click)="update()" >Update</button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+
+                  <div [hidden]="error == ''">
+                    <p class="md-warn" layout="row" layout-fill layout-padding layout-margin>
+                      <p class="md-body-1 has-error">{{ error?.reason }}</p>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="id-verfication">
+                <div class="hdr">
+                  <h3>Id Verification</h3>
+                  <p>Bring trust to your customers</p>
+                </div>
+                <ul>
+                  <li>
+                    <div class="row">
+                      <div class="col-sm-8 col-md-12 col-lg-8">
+                        <div class="icn-wrap">
+                          <img src="images/book.png" alt="" />
+                        </div>
+                        <div class="verfication-info">
+                          <p>Agent Certificate</p>
+                          <h5 *ngIf="!! user?.profile.supplier?.agentCertificate?.name">
+                            <a href="{{user.profile.supplier.agentCertificate.url}}" download title="{{user.profile.supplier.agentCertificate.name}}">
+                              {{user.profile.supplier.agentCertificate.name}}
+                            </a>
+                          </h5>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-md-12 col-lg-4">
+                        <button type="button" class="btn green-btn" *ngIf="user?.profile.supplier?.agentCertificate?.verified == true"><span><i class="fa fa-check" aria-hidden="true"></i></span> Verified</button>
+                        <button type="button" class="btn" *ngIf="! user?.profile.supplier?.agentCertificate || user?.profile.supplier?.agentCertificate?.verified != true"><span><i class="fa fa-close" aria-hidden="true"></i></span> Pending</button>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row">
+                      <div class="col-sm-8 col-md-12 col-lg-8">
+                        <div class="icn-wrap">
+                          <img src="images/manger.png" alt="" />
+                        </div>
+                        <div class="verfication-info">
+                          <p>Manager</p>
+                          <h5>{{user?.profile.supplier?.ownerName}}</h5>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 col-md-12 col-lg-4">
+                        <button type="button" class="btn green-btn" *ngIf="user?.profile.supplier?.agentIdentity?.verified == true"><span><i class="fa fa-check" aria-hidden="true"></i></span> Verified</button>
+                        <button type="button" class="btn" *ngIf="! user?.profile.supplier?.agentIdentity || user?.profile.supplier?.agentIdentity?.verified != true"><span><i class="fa fa-close" aria-hidden="true"></i></span> Pending</button>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

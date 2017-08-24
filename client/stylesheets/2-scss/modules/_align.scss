@@ -1,0 +1,101 @@
+.text-left {
+	text-align: left;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.text-center {
+	text-align: center;
+}
+
+.pull_left {
+	float: left;
+}
+
+.pull_right {
+	float: right;
+}
+
+.pull_none {
+	float: none;
+}
+
+.clearfix {
+	&:after, &:before {
+		content: '';
+		display: table;
+	}
+	&:after {
+		clear: both;
+	}
+}
+
+.block {
+	display: block;
+}
+
+.table {
+	display: table;
+}
+
+.inline-block {
+	display: inline-block;
+}
+
+.inline {
+	display: inline;
+}
+
+.table {
+	display : table;
+}
+
+.none {
+	display: none;
+}
+
+.table-cell {
+	display: table-cell;
+}
+
+.absolute {
+	position: absolute;
+}
+
+.relative {
+	position: relative;
+}
+
+.top-0 {
+	top: 0;
+}
+
+.left-0 {
+	left: 0;
+}
+
+.right-0 {
+	right: 0;
+}
+
+.bottom-0 {
+	bottom: 0;
+}
+
+.vertical-middle {
+	vertical-align: middle;
+}
+
+.vertical-top {
+	vertical-align: top;
+}
+
+.vertical-center {
+	vertical-align: center;
+}
+
+.vertical-bottom {
+	vertical-align: bottom;
+}

@@ -1,0 +1,12 @@
+.tour-view {
+  .tour-detail {
+    .review-content {
+      background-color: $white;
+      margin: 10px 0;
+      padding: 20px;
+      .tour-itinerary .day-box .day-wrap {
+        padding-right: 10px;
+      }
+    }
+  }
+}

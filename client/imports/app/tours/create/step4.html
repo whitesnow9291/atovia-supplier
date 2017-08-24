@@ -1,0 +1,120 @@
+<header-main></header-main>
+<main>
+  <div class="grey-bg step-1 step-3 step-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h3 class="tour-head">New Tour</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <ul class="tab-list">
+            <li class="completed">
+              <a [routerLink]="['/tours/create/step1']">
+                <span><i class="fa fa-check" aria-hidden="true"></i></span>
+                <div class="tab-detail">
+                  <h4>Tour Details</h4>
+                  <p>General tour information</p>
+                </div>
+              </a>
+            </li>
+            <li class="completed">
+              <a [routerLink]="['/tours/create/step2']">
+                <span><i class="fa fa-check" aria-hidden="true"></i></span>
+                <div class="tab-detail">
+                  <h4>Tour Schedule</h4>
+                  <p>Tour availability & Prices</p>
+                </div>
+              </a>
+            </li>
+            <li class="completed">
+              <a [routerLink]="['/tours/create/step3']">
+                <span><i class="fa fa-check" aria-hidden="true"></i></span>
+                <div class="tab-detail">
+                  <h4>Tour Itinerary</h4>
+                  <p>Day by day schedule</p>
+                </div>
+              </a>
+            </li>
+            <li class="active">
+              <a href="javascript:void(0)">
+                <span>4</span>
+                <div class="tab-detail">
+                  <h4>Tour Gallery</h4>
+                  <p>Gorgeous images</p>
+                </div>
+              </a>
+            </li>
+            <li class="disabled">
+              <a href="javascript:void(0)">
+                <span>5</span>
+                <div class="tab-detail">
+                  <h4>Inclusion & Policy</h4>
+                  <p>Last thing customer need to know</p>
+                </div>
+              </a>
+            </li>
+            <li class="disabled">
+              <a href="javascript:void(0)">
+                <span>6</span>
+                <div class="tab-detail">
+                  <h4>Review</h4>
+                  <p>Make sure everything is correct</p>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-8">
+          <form>
+            <section class="right-wrap tour-detail">
+              <div class="tour-header">
+                <h5>Step 4</h5>
+                <h3>Tour Gallery</h3>
+                <p>Mauris non tempor quam, et lacinia sapien. Mauris accumsan eros eget libero posuere vulputate. Etiam elit elit, elementum sed varius at, adipiscing vitae est. </p>
+              </div>
+              <div class="steps step1-form">
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-lg-4" *ngFor="let image of imagesArr; let i=index">
+                      <div class="image-wrap">
+                        <img src="uploads/images/{{image.id}}-210-130.jpg" alt=""/>
+                        <span class="close"><a href="javascript:void(0);" (click)="removeImage(image.id)"><i class="fa fa-times" aria-hidden="true"></i></a></span>
+                      </div>
+                      <div class="radio-wrap">
+                        <input [id]="'radio-'+i" class="radio-custom" name="radio-group" type="radio" (change)="setFeaturedImage(image)" [checked]="(image.url == featuredImage?.url ? 'checked' : '')">
+                        <label [for]="'radio-'+i" class="radio-custom-label">Set as feature image</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <p class="form-text text-muted" *ngIf="isUploading">We are uploading your images.</p>
+                <div class="image-drag right-wrap text-center" fileDrop
+                [ngClass]="{'file-is-over': fileIsOver}"
+                (fileOver)="fileOver($event)"
+                (onFileDrop)="onFileDrop($event)">
+                  <div class="drag-area">
+                    <div class="cloud">
+                      <img src="images/cloud.png" alt=""/>
+                    </div>
+                    <p>Drag your image(s) here to upload</p>
+                    <h5>OR</h5>
+                    <div class="btn-wrap">
+                      <input #fileInput type="file" style="display: none;" (change)="onFileSelect($event)" accept="image/*" multiple />
+                      <button type="button" class="btn green-btn pull-right" (click)="fileInput.click();">Select photos from computer</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <div class="form-group  bottom-btn">
+              <button type="button" class="btn grey-btn pull-left" [routerLink]="['/tours/create/step3']"><span><i class="fa fa-angle-left" aria-hidden="true"></i></span>Back</button>
+              <button type="button" class="btn green-btn pull-right" (click)="step4()">Next<span><i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

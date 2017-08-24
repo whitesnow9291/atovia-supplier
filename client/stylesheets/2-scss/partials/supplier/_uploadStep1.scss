@@ -1,0 +1,127 @@
+.sign-step1 {
+	.center-content {
+		padding: 0;
+		.white-bg {
+			background: $white;
+			padding: 35px 30px;
+			h3 {
+				font-size: $font-24;
+				font-weight: $weight_700;
+				color: $green-anchor;
+				margin-bottom: 10px;
+      }
+			p {
+				font-size: $font-16;
+				color: $grey-anchor;
+				margin: 15px auto 0;
+      }
+    }
+		.grey-bg {
+			padding: 34px 30px;
+			@media (max-width: $medium-phone) {
+				padding: 34px 10px;
+      }
+			ul {
+				@extend .text-center;
+				margin-top: -55px;
+				margin-bottom: 50px;
+				li {
+					@extend .inline-block;
+					width: 32%;
+					@extend .text-center;
+					span {
+						height: 48px;
+						width: 48px;
+						@extend .inline-block;
+						@include border-radius(50%, 50%, 50%, 50%);
+						background-color: $border-color;
+						color: $white;
+						font-size: 20px;
+						line-height: 48px;
+						margin-bottom: 10px;
+          }
+					p {
+						color: $placeholder;
+						font-weight: $weight_900;
+						margin: 0;
+						font-size: $font-16;
+						@media (max-width: $medium-phone) {
+							font-size: $font-14;
+            }
+          }
+        }
+				li.active,
+				li.completed {
+					span {
+						background-color: $green-color;
+						color: $white;
+          }
+					p {
+						color: $grey-anchor;
+          }
+        }
+      }
+			.form-group.upload {
+				.input-group {
+					.form-control {
+						opacity: 0;
+          }
+				}
+			}
+			.form-group {
+				label {
+					width: $full;
+					color: $label-color;
+					text-transform: uppercase;
+					span {
+						@extend .pull_right;
+						color: $grey-anchor;
+						@media (max-width: $medium-phone) {
+							float: left;
+            }
+          }
+        }
+				.input-group {
+					background: $white;
+					@extend .relative;
+					.pull_left {
+						left: 15px;
+						right: auto;
+						width: auto;
+						@extend .text-left;
+						top: 16px;
+						@media (max-width: $medium-phone) {
+							width: $full;
+							overflow: hidden;
+            }
+          }
+
+					.input-group-btn {
+						padding: 5px;
+						button {
+							margin: 0;
+							@include border-radius(2px, 2px, 2px, 2px);
+							font-weight: $weight_700;
+							@media (max-width: $laptop) {
+								padding: 15px 25px;
+								width: auto;
+							}
+							span {
+								@extend .static;
+								margin-left: 5px;
+								@extend .vertical-middle;
+								i {
+									color: $white;
+								}
+              }
+            }
+          }
+        }
+				.full-btn {
+					margin: 0;
+					font-weight: $weight_700;
+				}
+      }
+    }
+  }
+}

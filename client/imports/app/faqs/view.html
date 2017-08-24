@@ -1,0 +1,7 @@
+<div *ngFor="let cat of data">
+  <h4>{{cat.title}}</h4>
+  <div *ngFor="let ques of cat.questionset">
+    <h5>{{ques.question}}</h5>
+    <div [innerHTML]="ques.answer"></div>
+  </div>
+</div>

@@ -1,0 +1,266 @@
+.report {
+	.user-head {
+		height: 70px;
+		padding: 17px 0;
+		@media (max-width: $ipad) {
+			height: auto;
+    }
+		h4 {
+			margin-top: 5px;
+			font-size: $font-24;
+			color: $label-color;
+			font-weight: $weight_700;
+    }
+		.sort-bar {
+			.col-md-10 {
+				@media (max-width: $ipad) {
+
+        }
+				margin-top: 5px;
+				.col-sm-8 {
+					.pull_right {
+						@media (max-width: $small-grid) {
+							float: none !important;
+							width: 100%;
+							margin: 0 auto 5px;
+							text-align:center;
+            }
+						.form-group {
+							width: 150px;
+							@extend .pull-left;
+							@extend .relative	;
+							margin: 0 12px;
+							@media (max-width: $ipad) {
+								width: 150px;
+								margin: 0;
+              }
+
+							@media (max-width: $small_phone) {
+								width: 130px;
+              }
+							.form-control {
+								padding: 8px 33px;
+              }
+							span {
+								@extend .absolute;
+              }
+							.left-icon {
+								top: 6px;
+								left: 10px;
+              }
+							.right-icon {
+								top: 8px;
+								right: 10px;
+              }
+            }
+						.hypen {
+							@extend .pull-left;
+							@extend .inline-block;
+							@extend .relative;
+							top: 4px;
+							color: $grey;
+							font-weight: $weight_900;
+							font-size: $font-20;
+							@media (max-width: $ipad) {
+								margin: 0 10px;
+              }
+            }
+          }
+        }
+
+				.col-sm-4 {
+					@media (max-width: $small-grid) {
+						text-align: center;
+          }
+					.green-btn {
+						padding: 9px 0;
+						width: 100%;
+						@extend .pull_right;
+						@media (max-width: $small-grid) {
+							margin:  0 auto;
+							float: none;
+							width: auto;
+							padding: 9px 20px;
+							margin-top: 10px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+	.income-statics {
+		background: $white;
+		padding: 30px;
+		@include border-all(1px, solid, $border-color);
+		h3 {
+			@media (max-width: $ipad) {
+				text-align: center;
+      }
+    }
+		.anchor-list {
+			@extend .text-right;
+			@media (max-width: $ipad) {
+				text-align: center;
+				margin-top: 20px;
+      }
+			a {
+				font-weight: $weight_700;
+				font-size: $font-14;
+				color: $grey-anchor;
+				padding: 10px 20px;
+				@include border-radius(3px, 3px, 3px, 3px);
+				margin: 0 10px;
+				cursor: pointer;
+				@media (max-width: $small_phone) {
+					padding: 5px 10px;
+					margin: auto;
+        }
+      }
+			a.active {
+				background: $green-color ;
+				color: $white;
+				text-transform: uppercase;
+      }
+    }
+		.graph-wrap {
+			margin-top: 50px;
+    }
+  }
+	.sale-history {
+		margin-top: 30px;
+		@include border-all(1px, solid, $border-color);
+		background: $white;
+  }
+		.hdr {
+			padding: 0 20px ;
+			margin-bottom: 10px;
+			@include border-bottom(1px, solid, $border-color);
+			li {
+				padding: 0 40px;
+				@extend .pull_left;
+				@extend .text-center;
+				@media (max-width: $small_phone) {
+					padding: 0;
+        }
+				a {
+					font-size: $font-16;
+					font-weight: $weight_700;
+					color: $label-color;
+					padding: 15px 30px;
+					@extend .inline-block;
+					@include border-bottom(4px, solid,transparent);
+					&:hover,
+					&:focus {
+						outline: 0;
+          }
+        }
+      }
+			li.active {
+				a {
+					@include border-bottom(4px, solid, $green-color);
+        }
+      }
+    }
+	.filter-head {
+		padding: 15px 35px;
+		@media (max-width: $ipad) {
+			padding: 15px 10px;
+    }
+		h4 {
+			color: $label-color;
+			font-size: $font-24;
+			font-weight: $weight_700;
+			@media (max-width: $laptop) {
+				text-align: center;
+				margin-bottom: 10px;
+      }
+    }
+		.green-btn {
+			width: 100px;
+			padding: 8px;
+			@media (max-width: $ipad) {
+				text-align: center;
+				margin: 10px auto 0;
+				float: none;
+				display: block;
+      }
+    }
+		label {
+			@extend .vertical-middle;
+			margin: 0;
+			color: $black;
+			font-size: $font-14;
+			font-weight: $weight_700;
+			@media (max-width: $medium-phone) {
+				width: 100%;
+				margin: 0 0 10px 10px;
+      }
+    }
+
+		.form-group {
+			width : 150px;
+			@extend .inline-block;
+			@extend .relative;
+			margin: 0 10px;
+			@media (max-width: $medium-phone) {
+				width: 120px;
+				margin: 0 5px;
+      }
+			span {
+				@extend .absolute;
+				left: 20px;
+				top: 5px;
+      }
+				@media (max-width: $medium-phone) {
+					left: 5px;
+        }
+				i {
+					color: $green-color;
+        }
+			input {
+				padding-left : 25px;
+				border: 0;
+				background: $grey-bg;
+				@extend .text-right;
+      }
+    }
+  }
+	.table-wrapper {
+		overflow-x: auto;
+		.table {
+			margin: 0;
+			min-width: 918px;
+			width: 918px;
+    }
+			th {
+				background: $grey2;
+				color: $label-color;
+				font-size: $font-16;
+				font-weight: $weight_700;
+      }
+			tbody {
+				td {
+					border: 0;
+					color: $label-color;
+        }
+      }
+				td:first-of-type,
+				td:nth-of-type(3) {
+					background: $light-bg;
+        }
+				td:nth-of-type(3) {
+					width: 175px;
+        }
+				td:first-of-type {
+					.date {
+						margin-right: 25px;
+						font-size: $font-14;
+						font-weight: $weight_700;
+          }
+        }
+				td:last-of-type {
+					font-weight: $weight_700;
+        }
+      }
+    }

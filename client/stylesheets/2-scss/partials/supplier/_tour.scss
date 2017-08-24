@@ -1,0 +1,240 @@
+.supplier-dashboard.tours {
+	ul.tabs {
+		margin: 0;
+		padding: 0;
+		@extend .pull_left;
+		list-style: none;
+		height: 80px;
+		width: $full;
+		@media (max-width: $ipad) {
+			display: none;
+    }
+		li {
+			@extend .pull_left;
+			margin: 0;
+			cursor: pointer;
+			padding: 0 21px;
+			height: 80px;
+			line-height: 80px;
+			border-top: 1px solid $border-color;
+			border-left: 1px solid $border-color;
+			font-weight: $weight_700;
+			font-size: $font-16;
+			width: 300px;
+			background-color: $tab-bg;
+			@extend .text-center;
+			color: $label-color;
+			overflow: hidden;
+			@extend .relative;
+			&:hover {
+				background-color: $white;
+      }
+			span {
+				background-color: $green-color;
+				color: $white;
+				padding: 3px 8px;
+				border-radius: 10px;
+				@extend .pull_right;
+				line-height: 20px;
+				margin-top: 28px;
+      }
+    }
+		li.tab_last {
+			border-right: 1px solid $border-color;
+    }
+		li.active {
+			background-color: $white;
+			@extend .block;
+    }
+  }
+	.right-wrap {
+		padding: 0;
+		border-top: 0;
+		.tab_container {
+			clear: both;
+			@extend .pull_left;
+			width: $full;
+			background: $white;
+			overflow: auto;
+			.tab_content {
+				display: none;
+				.table {
+					min-width: 918px;
+					overflow: auto;
+					thead th {
+						border-bottom: 4px solid $green-color;
+						// padding: 25px;
+						text-align: center;
+          }
+					tbody td {
+						padding: 15px 25px;
+						font-size: $font-14;
+						@extend .vertical-middle;
+						a {
+							color: $green-anchor;
+							font-weight: bold;
+						}
+          }
+					td.tour-detail {
+						width: 330px;
+						span {
+							@extend .pull_left;
+							margin-right: 11px;
+							img {
+								height: 40px;
+								width: 40px;
+								border-radius: 5px;
+              }
+            }
+						div {
+							@extend .inline-block;
+							@extend .pull_left;
+							h5 {
+								font-size: $font-16;
+								font-weight: $weight_700;
+								color: $green-color;
+              }
+							p {
+								font-size: $font-14;
+              }
+            }
+          }
+					td.action-td {
+						.btn {
+							padding: 5px 10px;
+							color: $white;
+							background: $green-color;
+							border: none;
+							font-size: font-14;
+            }
+
+						.dropdown-toggle {
+							border-left: 1px solid $light-green;
+            }
+						.dropdown-menu {
+							@extend .right-0;
+							left: auto;
+            }
+          }
+        }
+      }
+			.tab_drawer_heading {
+				@extend .none;
+				@media (max-width: $ipad) {
+					background-color: $white;
+					color: $label-color;
+					border-top: 1px solid $border-color;
+					margin: 0;
+					padding: 5px 20px;
+					display: block;
+					cursor: pointer;
+					-webkit-touch-callout: none;
+					-webkit-user-select: none;
+					-khtml-user-select: none;
+					-moz-user-select: none;
+					-ms-user-select: none;
+					user-select: none;
+					font-weight: $weight_700;
+					font-size: $font-16;
+					padding: 25px;
+					span {
+						background-color: $green-color;
+						color: $white;
+						padding: 3px 8px;
+						border-radius: 10px;
+						float: right;
+						line-height: 20px;
+						margin-top: -4px;
+          }
+        }
+      }
+			.d_active {
+				@media (max-width: $ipad) {
+					background-color:  $tab-bg;
+					color: $label-color;
+					font-weight: $weight_700;
+					font-size: $font-16;
+					padding: 25px;
+        }
+      }
+    }
+  }
+	.user-head {
+		@media (max-width: $ipad) {
+			height: auto;
+    }
+		.sort-bar {
+			input,
+			button {
+				border: none;
+      }
+			@media (max-width: $ipad) {
+				.col-md-2,
+				.col-md-10 {
+					text-align: center;
+        }
+      }
+			.form-group > span {
+				@extend .absolute;
+				top: 3px;
+				@media (max-width: $ipad) {
+					left: 9px;
+					top: 4px;
+        }
+      }
+			.form-group > input {
+				padding: 7px 0 0 25px;
+				@include placeholder();
+				@extend .placholder-font;
+				color: $black;
+      }
+			.green-btn {
+				padding: 6px 0;
+				width: 165px;
+				@extend .pull_right;
+				@media (max-width: $laptop) {
+					width: auto;
+					padding: 6px 15px;
+        }
+				@media (max-width: $phone) {
+					float: none;
+        }
+				i {
+					margin-right: 10px;
+        }
+      }
+			.anchor-icons{
+				position: absolute;
+				left: 2px;
+				top: 2px;
+				a{
+					display: block;
+					line-height: 12px;
+				}
+				a.active {
+					color: $green-color;
+				}
+			}
+			.dropdown-toggle {
+				width: $full;
+				@extend .text-left;
+				color: $black;
+				&:after {
+					@extend .absolute;
+					right: 3px;
+					top : 16px;
+        }
+				&:hover {
+					background: none;
+        }
+				&:focus {
+					box-shadow: none;
+					color: $black;
+        }
+				&:active {
+					background: none;
+        }
+      }
+    }
+  }
+}

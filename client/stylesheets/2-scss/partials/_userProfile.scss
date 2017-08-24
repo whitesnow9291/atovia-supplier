@@ -1,0 +1,129 @@
+.user-profile.grey-bg {
+	.right-wrap .detail-form {
+		padding: 25px 0;
+		.inner-wrap {
+			padding: 0 30px 28px;
+			@include border-bottom(1px, solid, $border-color);
+			margin-bottom: 20px;
+    }
+		.btn-space {
+			padding: 0 30px;
+    }
+  }
+	.id-verfication {
+		background: $white;
+		@include border-all(1px, solid, $border-color);
+		@media (max-width: $ipad) {
+			margin-top: 25px;
+		}
+		.hdr {
+			padding: 25px;
+			@include border-bottom(1px, solid, $border-color);
+    }
+			h3 {
+				color: $label-color;
+				font-size: $font-20;
+				font-weight: $weight_700;
+      }
+			p {
+				color: $grey-anchor;
+				font-size: $font-16;
+				margin: 0;
+      }
+		ul li{
+			padding: 25px;
+			.col-8,
+			.col-4 {
+				@media (max-width: $small_phone) {
+					max-width: 100%;
+					float: left;
+					margin: 3px  0;
+					flex: 0 0 100%;
+        }
+      }
+			.col-4 {
+				@media (max-width: $small_phone) {
+					text-align: center;
+        }
+      }
+			.icn-wrap,
+			.verfication-info {
+				@extend .vertical-middle;
+				@extend .inline-block;
+				@media (max-width: $laptop){
+					margin-bottom: 10px;
+				}
+      }
+			.icn-wrap {
+				margin-right: 5px;
+      }
+			.verfication-info {
+				p {
+					color: $grey-anchor;
+					font-size: $font-16;
+					margin: 0;
+        }
+      }
+				h5 {
+					color: $label-color;
+					font-size: $font-20;
+					font-weight: $weight_700;
+					max-width: 170px;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					overflow: hidden;
+					a{
+						color: $label-color;
+					}
+        }
+			.green-btn {
+				width: auto;
+				padding: 8px 9px;
+				@media (max-width: $laptop){
+					margin: 0 auto;
+					float: none;
+					display: block;
+				}
+				span {
+					margin-right: 3px;
+        }
+      }
+			li: first-of-type {
+			@include border-bottom(1px, solid, $border-color);
+    }
+  }
+ }
+}
+.user-profile-head.user-head {
+	.profile {
+		.img-wrap {
+				@extend .pull_left;
+			.user-img {
+				@include border-all(1px, solid, $border-color);
+					img {
+						@include border-radius($full, $full, $full, $full);
+						max-width: 100%;
+					}
+				}
+				.image-input {
+					.update-img{
+						@extend .absolute;
+						left:0px;
+						right: 0px;
+						text-align: center;
+						width: 122px;
+						z-index: 555;
+						font-size: $font-24;
+						color: $green-color;
+						bottom: -7px;
+						cursor: pointer;
+
+					}
+					input{
+						opacity: 0;
+						width: 90px;
+					}
+				}
+		}
+	}
+}

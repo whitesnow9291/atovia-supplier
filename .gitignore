@@ -1,0 +1,13 @@
+node_modules
+npm-debug.log
+.idea
+.meteor/local
+uploads/*
+run.sh
+.DS_Store
+._.DS_Store
+settings.json
+debug.log
+deploy.sh
+sshenv
+

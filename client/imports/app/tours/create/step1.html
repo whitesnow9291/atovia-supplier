@@ -1,0 +1,241 @@
+<header-main></header-main>
+<main>
+  <div class="grey-bg step-1">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <h3 class="tour-head">New Tour</h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <ul class="tab-list">
+            <li class="active">
+              <a href="javascript:void(0)">
+                <span>1</span>
+                <div class="tab-detail">
+                  <h4>Tour Details</h4>
+                  <p>General tour information</p>
+                </div>
+              </a>
+            </li>
+            <li class="disabled">
+              <a href="javascript:void(0)">
+                <span>2</span>
+                <div class="tab-detail">
+                  <h4>Tour Schedule</h4>
+                  <p>Tour availability & Prices</p>
+                </div>
+              </a>
+            </li>
+            <li class="disabled">
+              <a href="javascript:void(0)">
+                <span>3</span>
+                <div class="tab-detail">
+                  <h4>Tour Itinerary</h4>
+                  <p>Day by day schedule</p>
+                </div>
+              </a>
+            </li>
+            <li class="disabled">
+              <a href="javascript:void(0)">
+                <span>4</span>
+                <div class="tab-detail">
+                  <h4>Tour Gallery</h4>
+                  <p>Gorgeous images</p>
+                </div>
+              </a>
+            </li>
+            <li class="disabled">
+              <a href="javascript:void(0)">
+                <span>5</span>
+                <div class="tab-detail">
+                  <h4>Inclusion & Policy</h4>
+                  <p>Last thing customer need to know</p>
+                </div>
+              </a>
+            </li>
+            <li class="disabled">
+              <a href="javascript:void(0)">
+                <span>6</span>
+                <div class="tab-detail">
+                  <h4>Review</h4>
+                  <p>Make sure everything is correct</p>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-8">
+          <form [formGroup]="step1Form" #f="ngForm" (ngSubmit)="step1()">
+            <section class="right-wrap tour-detail">
+              <div class="tour-header">
+                <h5>Step 1</h5>
+                <h3>Tour Details</h3>
+                <h6>* Required Fields</h6>
+                <p>Mauris non tempor quam, et lacinia sapien. Mauris accumsan eros eget libero posuere vulputate. Etiam elit elit, elementum sed varius at, adipiscing vitae est. </p>
+              </div>
+              <div class="steps step1-form">
+
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <label for="TourName">Tour Name *</label>
+                      <div class="input-wrap">
+                        <input type="text" class="form-control" id="TourName" placeholder="Tour Name" formControlName="name"/>
+                      </div>
+                      <div *ngIf="step1Form.controls['name'].errors && step1Form.controls['name'].touched" class="has-error">
+                        <div *ngIf="step1Form.controls.name.hasError('required')">You have to fill in Tour Name.</div>
+                        <div *ngIf="step1Form.controls.name.hasError('minlength')">Min 8 characters required.</div>
+                        <div *ngIf="step1Form.controls.name.hasError('maxlength')">Max 255 characters allowed.</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-12">
+                    <div class="form-group">
+                      <label for="Description">Tour Description *</label>
+                      <div class="input-wrap">
+                        <textarea class="form-control" id="Description" placeholder="Tour Description" formControlName="description" #description></textarea>
+                        <small class="form-text text-muted"><code>{{description.value.length}}</code> of <code>{{755}}</code> characters.</small>
+                      </div>
+                      <div *ngIf="step1Form.controls['description'].errors && step1Form.controls['description'].touched" class="has-error">
+                        <div *ngIf="step1Form.controls.description.hasError('required')">You have to fill in Tour Description.</div>
+                        <div *ngIf="step1Form.controls.description.hasError('minlength')">Min 8 characters required.</div>
+                        <div *ngIf="step1Form.controls.description.hasError('maxlength')">Max 755 characters allowed.</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="Location">Departure Location *</label>
+                      <div class="input-wrap">
+                        <ng2-completer [datasource]="dataService" [minSearchLength]="2" class="form-control" id="Location" placeholder="Departure Location" type="text" formControlName="departure" #departure (selected)="setDeparture($event)"></ng2-completer>
+                      </div>
+                      <div *ngIf="step1Form.controls['departure'].errors && step1Form.controls['departure'].touched" class="has-error">
+                        <div *ngIf="step1Form.controls.departure.hasError('required')">You have to fill in Departure Location.</div>
+                        <div *ngIf="step1Form.controls.departure.hasError('minlength')">Min 5 characters required.</div>
+                        <div *ngIf="step1Form.controls.departure.hasError('maxlength')">Max 255 characters allowed.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="Destination">Destination *</label>
+                      <div class="input-wrap">
+                        <ng2-completer [datasource]="dataService" [minSearchLength]="2" class="form-control" id="Destination" placeholder="Destination Location" type="text" formControlName="destination" #destination (selected)="setDestination($event)"></ng2-completer>
+                      </div>
+                      <div *ngIf="step1Form.controls['destination'].errors && step1Form.controls['destination'].touched" class="has-error">
+                        <div *ngIf="step1Form.controls.destination.hasError('required')">You have to fill in Destination.</div>
+                        <div *ngIf="step1Form.controls.destination.hasError('minlength')">Min 5 characters required.</div>
+                        <div *ngIf="step1Form.controls.destination.hasError('maxlength')">Max 255 characters allowed.</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="days">Days of Tour *</label>
+                      <div class="input-wrap">
+                        <input type="number" class="form-control" id="days" placeholder="Days of Tour" formControlName="noOfDays"/>
+                      </div>
+                      <div *ngIf="step1Form.controls['noOfDays'].errors && step1Form.controls['noOfDays'].touched" class="has-error">
+                        <div *ngIf="step1Form.controls.noOfDays.hasError('required')">You have to fill in Days of Tour.</div>
+                        <div *ngIf="step1Form.controls.noOfDays.hasError('min')">Min value required is 1.</div>
+                        <div *ngIf="step1Form.controls.noOfDays.hasError('max')">Max value allowed is 30.</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="nights">Tour Nights </label>
+                      <div class="input-wrap">
+                        <input type="number" class="form-control" id="nights" placeholder="Tour Nights" formControlName="noOfNights"/>
+                      </div>
+                      <div *ngIf="step1Form.controls['noOfNights'].errors && step1Form.controls['noOfNights'].touched" class="has-error">
+                        <div *ngIf="step1Form.controls.noOfNights.hasError('min')">Min value required is 1.</div>
+                        <div *ngIf="step1Form.controls.noOfNights.hasError('max')">Max value allowed is 30.</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="exampleSelect1">Tour Type *</label>
+                      <div class="select-style">
+                        <select class="select" id="exampleSelect1" formControlName="tourType">
+                          <option>Family friendly</option>
+                          <option>Honeymoon</option>
+                          <option>Adventure</option>
+                          <option>Designed for Couple</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div *ngIf="step1Form.controls['tourType'].errors && step1Form.controls['tourType'].touched" class="has-error">
+                      <div *ngIf="step1Form.controls.tourType.hasError('required')">You have to select Tour Type.</div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <label for="exampleSelect1">Tour Pace *</label>
+                      <div class="select-style">
+                        <select class="select" id="exampleSelect1" formControlName="tourPace">
+                          <option>Slow</option>
+                          <option>Medium</option>
+                          <option>Fast</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div *ngIf="step1Form.controls['tourPace'].errors && step1Form.controls['tourPace'].touched" class="has-error">
+                      <div *ngIf="step1Form.controls.tourPace.hasError('required')">You have to select Tour Pace.</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <div class="checkbox">
+                        <label class="switch">
+                          <input type="checkbox" formControlName="hasGuide">
+                          <div class="slider">
+                            <span class="on">On</span>
+                            <span class="off">Off</span>
+                          </div>
+                        </label>
+                        <span class="side-label">Include Tour Guide</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-sm-6">
+                    <div class="form-group">
+                      <div class="checkbox">
+                        <label class="switch">
+                          <input type="checkbox" formControlName="hasFlight">
+                          <div class="slider">
+                            <span class="on">Yes</span>
+                            <span class="off">No</span>
+                          </div>
+                        </label>
+                        <span class="side-label">Include Tour Flight</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
+              </div>
+            </section>
+            <div class="form-group text-right bottom-btn">
+              <button type="button" class="btn green-btn" (click)="step1()">Next<span><i class="fa fa-angle-right" aria-hidden="true"></i></span></button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

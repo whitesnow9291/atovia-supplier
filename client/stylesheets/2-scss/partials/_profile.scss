@@ -1,0 +1,142 @@
+.user-head {
+	@include padding(48px, 0, 48px, 0);
+	height: 199px;
+	border-bottom: 1px solid $border-color;
+	@media (max-width: $medium-phone) {
+		padding: 20px 0;
+		height: auto;
+	}
+	.profile {
+		@media (max-width: $medium-phone) {
+			text-align: center;
+		}
+		.user-img {
+			@extend .pull_left;
+			height: 102px;
+			width: 102px;
+			line-height: 93px;
+			@extend .text-center;
+			@include border-radius($full, $full, $full, $full);
+			@media (max-width: $medium-phone) {
+				float: none;
+				display: block;
+				margin: 0 auto;
+			}
+			img {
+				height: 102px;
+				width: 102px;
+				@include border-radius($full, $full, $full, $full);
+			}
+		}
+		.user-deatil {
+			@extend .inline-block;
+			@extend .pull_left;
+			@include margin(11px, 0, 0, 45px);
+			@media (max-width: $medium-phone) {
+				float: none;
+				display: block;
+				margin: 0 auto;
+			}
+			h4 {
+				color: $label-color;
+				font-size: $font-36;
+				font-weight: $weight_900;
+				margin-bottom: 0;
+			}
+			p {
+				color: $grey-anchor;
+				font-size: $font-16;
+			}
+		}
+	}
+}
+
+.grey-bg {
+	padding: 25px 0;
+	.right-wrap {
+		background: #fff;
+		@include border-all(1px, solid, $border-color);
+		width: $full;
+		@extend .pull_left;
+		.update-detail {
+			padding: 24px 25px;
+			@include border-bottom(1px, solid, $border-color);
+			h3 {
+				font-weight: $weight_700;
+				font-size: $font-20;
+				color: $label-color;
+				margin-bottom: 5px;
+			}
+			p {
+				font-size: $font-16;
+				color: $grey-anchor;
+				margin: 0;
+			}
+		}
+
+		.detail-form {
+			padding: 24px 25px;
+			label {
+				font-size: $font-14;
+				color: $grey-anchor;
+				margin-bottom: 3px;
+			}
+			.green-btn{
+				@media (max-width: $medium-phone) {
+					width: $full;
+				}
+			}
+		}
+	}
+	.customer-support {
+		background: $green-color;
+		color: $white;
+		padding: 20px;
+		margin-bottom: 30px;
+		@media (max-width: $ipad) {
+			margin-top: 30px;
+		}
+		h3 {
+			font-size: $font-20;
+			font-weight: $weight_700;
+			margin-bottom: 25px;
+		}
+		p {
+			font-size: $font-16;
+		}
+		.contact-info {
+			h4 {
+				font-size: $font-16;
+			}
+			p {
+				font-size: $font-14;
+			}
+		}
+
+		.contact-detail	p {
+			font-size: $font-14;
+		}
+	}
+	.give-feedback {
+		padding: 20px;
+		color: $white;
+		@extend .dark-grey-bg;
+		.table {
+
+			@extend .table;
+			height: 350px;
+			width: $full;
+			.table-cell {
+				@extend .table-cell;
+				height: $full;
+				width: $full;
+				@extend .vertical-bottom;
+				h3 {
+					font-size: $font-26;
+					font-weight: $weight_700;
+					margin-bottom: 10px;
+				}
+			}
+		}
+	}
+}

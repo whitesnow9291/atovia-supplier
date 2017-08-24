@@ -1,0 +1,212 @@
+<header-main></header-main>
+<main class="supplier-dashboard summary">
+  <div class="user-head">
+    <div class="container">
+      <div class="row justify-content-sm-center">
+        <div class="col-xl-10">
+          <h4>Summary</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grey-bg">
+    <div class="container">
+      <div class="row justify-content-sm-center">
+        <div class="col-xl-10">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="right-wrap">
+                <h4>Bookings <span>This week</span></h4>
+                <div class="row">
+                  <div class="col-9">
+                    <p class="count" *ngIf="bookingsCount.length > 0">{{bookingsCount[0]}}</p>
+                    <p class="count" *ngIf="bookingsCount.length <= 0">0</p>
+                  </div>
+                  <div class="col-3">
+                    <div class="side-img">
+                      <img src="images/booking.png" alt=""/>
+                    </div>
+                  </div>
+                </div>
+                <div class="graph-img">
+                  <canvas id="myChart" width="400" height="400" [hidden]="bookingsCount.length <= 0"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="right-wrap">
+                <h4>Net Revenue <span> This week</span></h4>
+                <div class="row">
+                  <div class="col-9">
+                    <p class="count" *ngIf="bookingsValue.length > 0">${{bookingsValue[0]}}</p>
+                    <p class="count" *ngIf="bookingsValue.length <= 0">$0</p>
+                  </div>
+                  <div class="col-3">
+                    <div class="side-img">
+                      <img src="images/revenue.png" alt=""/>
+                    </div>
+                  </div>
+                </div>
+                <div class="graph-img">
+                  <canvas id="myChart2" width="400" height="400" [hidden]="bookingsValue.length <= 0"></canvas>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4" *ngIf="!! user && !! user.profile.supplier.bankDetails">
+              <div class="right-wrap">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <h4>Supplier's Bank Details</h4>
+                    </div>
+                  </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <label><b>Benificiary Name</b></label>
+                  </div>
+                  <div class="col-md-12">
+                    <label>{{user.profile.supplier.bankDetails.accountName}}</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <label><b>Account Number</b></label>
+                  </div>
+                  <div class="col-md-12">
+                    <label>{{user.profile.supplier.bankDetails.accountNumber}}</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <label><b>Bank Name</b></label>
+                  </div>
+                  <div class="col-md-12">
+                    <label>{{user.profile.supplier.bankDetails.bankName}}</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <label><b>Bank Address</b></label>
+                  </div>
+                  <div class="col-md-12">
+                    <label>{{user.profile.supplier.bankDetails.bankAddress}}</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <label><b>Bank Swift Code</b></label>
+                  </div>
+                  <div class="col-md-12">
+                    <label>{{user.profile.supplier.bankDetails.swiftCode}}</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4" *ngIf="!! user && ! user.profile.supplier.bankDetails">
+              <div class="right-wrap" >
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <h4>Supplier's Bank Details</h4>
+                    </div>
+                  </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <label><b>Benificiary Name</b></label>
+                  </div>
+                  <div class="col-md-12">
+                    <label>N.A.</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <label><b>Account Number</b></label>
+                  </div>
+                  <div class="col-md-12">
+                    <label>N.A.</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <label><b>Bank Name</b></label>
+                  </div>
+                  <div class="col-md-12">
+                    <label>N.A.</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <label><b>Bank Address</b></label>
+                  </div>
+                  <div class="col-md-12">
+                    <label>N.A.</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <label><b>Bank Swift Code</b></label>
+                  </div>
+                  <div class="col-md-12">
+                    <label>N.A.</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="recent-booking">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="right-wrap">
+                  <div class="table-top">
+                    <div class="row">
+                      <div class="col-6">
+                        <h5>Recent Bookings</h5>
+                        <p>You have <span [innerHTML]="pageArr?.length">0</span> new bookings</p>
+                      </div>
+                      <div class="col-6">
+                        <a [routerLink]="['/bookings/list']">View all <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="table-box table-responsive">
+                    <table class="table table-hover ">
+                      <tbody>
+                        <tr class=""
+                        *ngFor="let page of pageArr"
+                        [attr.data-page-id]="page._id"
+                        [ngClass]="{'red accent-1': page.deleted, 'red lighten-4': page.active === false}"
+                        [hidden]="page.deleted">
+                          <th scope="row">
+                            <img *ngIf="!page.tour?.featuredImage?.url" src="images/random.png" />
+                            <img *ngIf="!!page.tour?.featuredImage?.url" src="uploads/images/{{page.tour?.featuredImage?.id}}-48-48.jpg" />
+                          </th>
+                          <td class="location">
+                            <h5>{{page.tour.name}}</h5>
+                            <p>Departure {{page.startDate | date}}</p>
+                          </td>
+                          <td class="user-detail">
+                            <span class="user-img">
+                              <img *ngIf="!page.user?.image?.url" src="images/user.png" />
+                              <img *ngIf="!!page.user?.image?.url" src="uploads/images/{{page.user?.image?.id}}-48-48.jpg" />
+                            </span>
+                            <span class="user-name">{{page.user.firstName}} {{page.user.lastName}}</span>
+                          </td>
+                          <td class="total-travellers">{{page.numOfTravellers}} Travllers</td>
+                          <td class="booking-details"><button type="button" class="btn green-btn" [routerLink]="['/bookings/view', page._id]">Booking Details  <i class="fa fa-angle-right" aria-hidden="true"></i></button></td>
+                        </tr>
+                        <tr *ngIf="itemsSize==0">
+                        <td colspan="4">
+                        No records have been added yet.
+                        </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

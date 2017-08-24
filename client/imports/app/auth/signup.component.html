@@ -1,0 +1,95 @@
+<div class="login-wrap signup-wrap">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-6 side-images">
+					<div class="table-wrapper">
+							<div class="center-content">
+									<h3 class="title-line">Partnership with Atorvia</h3>
+										<p>Mauris non tempor quam, et lacinia sapien. Mauris accumsan eros eget libero posuere vulputate. Etiam elit elit, elementum sed varius at, adipiscing vitae est.</p>
+										<ul  class="feature-listing">
+												<li>Features</li>
+												<li>Features</li>
+												<li>Features</li>
+												<li>Features</li>
+										</ul>
+								</div>
+						</div>
+				</div>
+			<div class="col-md-6">
+				<div class="table-wrapper side-form">
+					<div class="center-content login-form">
+						<form [formGroup]="signupForm" #f="ngForm" (ngSubmit)="signup()" id="input-icon">
+							<div class="form-group">
+								<div class="row">
+									<div class="col-sm-12">
+										<label for="ComapnyName">Comapny Name</label>
+										<div class="input-wrap">
+											<input type="text" class="form-control" id="companyName" placeholder="Company Name" formControlName="companyName"/>
+											<span><i class="fa fa-user" aria-hidden="true"></i></span>
+										</div>
+										<div class='form-text error has-error' *ngIf='signupForm.controls.companyName.errors && signupForm.controls.companyName.touched'>
+											<div [hidden]="!signupForm.controls['companyName'].errors.required">You have to fill in Company Name to signup.</div>
+			                <div [hidden]="!signupForm.controls['companyName'].errors.minlength">Min 2 characters required.</div>
+			                <div [hidden]="!signupForm.controls['companyName'].errors.maxlength">Max 30 characters allowed.</div>
+										</div>
+									</div>
+								</div>
+
+
+							</div>
+							<div class="form-group">
+								<label for="loginEmail">Email</label>
+								<div class="input-wrap">
+									<input type="email" class="form-control" id="loginEmail" placeholder="Email" formControlName="email"/>
+									<span><i class="fa fa-envelope" aria-hidden="true"></i></span>
+								</div>
+								<div class="form-text error has-error" *ngIf="signupForm.controls.email.errors && signupForm.controls.email.touched">
+									<div [hidden]="!signupForm.controls['email'].errors.required">You have to fill in Email to signup.</div>
+									<div [hidden]="!signupForm.controls['email'].errors.minlength">Min 5 characters required.</div>
+									<div [hidden]="!signupForm.controls['email'].errors.maxlength">Max 50 characters allowed.</div>
+									<div [hidden]="!signupForm.controls['email'].errors.validateEmail">Invalid Email address.</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="loginPassword">Password</label>
+								<div class="input-wrap">
+									<input type="password" class="form-control" id="loginPassword" placeholder="Password" minlength='6' formControlName="password"/>
+									<span><i class="fa fa-lock" aria-hidden="true"></i></span>
+								</div>
+								<div class='form-text error has-error' *ngIf="signupForm.controls.password.errors && signupForm.controls.password.touched">
+									<div [hidden]="!signupForm.controls['password'].errors.required">You have to fill in Password to signup.</div>
+									<div [hidden]="!signupForm.controls['password'].errors.minlength">Minimum 8 characters required.</div>
+									<div [hidden]="!signupForm.controls['password'].errors.maxlength">Maximum 30 characters allowed.</div>
+									<div [hidden]="!signupForm.controls['password'].errors.validatePassword">At least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character required.</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<button type="submit" class="btn green-btn full-btn" [disabled]="!signupForm.valid">Sign Up</button>
+							</div>
+							<div class="form-group signup-option">
+								<p>By clicking ‘Sign Up’, you agree with our <a [routerLink]="['/terms']">Partnership Terms &  Conditions</a>.</p>
+							</div>
+
+							<div class="form-group add-account">
+								<div class="row">
+									<div class="col-7">
+										<a href="javascript:void(0)">Already have an account?</a>
+									</div>
+									<div class="col-5 text-right">
+										<a [routerLink]="['/login']" class="green-text">Login now</a>
+									</div>
+									</div>
+							</div>
+						</form>
+
+						<!--<div [hidden]="error == ''">
+							<p class="md-warn" layout="row" layout-fill layout-padding layout-margin>
+								<p class="md-body-1">{{ error }}</p>
+							</p>
+						</div>-->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

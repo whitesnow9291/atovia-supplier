@@ -1,0 +1,61 @@
+<header class="user-header" *ngIf="!!user">
+  <div class="container-fluid">
+    <nav class="navbar navbar-toggleable-md">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"><i class="fa fa-bars" aria-hidden="true"></i>
+        </span>
+      </button>
+      <a class="navbar-brand" href="javascript:void(0);"><img src="images/logo.png" alt=""/></a>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item" [routerLinkActive]="['active']">
+            <a class="nav-link" [routerLink]="['/dashboard']">Summary</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['active']">
+            <a class="nav-link" [routerLink]="['/tours/list']">Tours</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['active']">
+            <a class="nav-link" [routerLink]="['/bookings/list']">Bookings</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['active']">
+            <a class="nav-link" [routerLink]="['/reports']">Reports</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['active']">
+            <a class="nav-link" [routerLink]="['/account']">Profile</a>
+          </li>
+          <li class="user-drop">
+            <span class="navbar-text">
+              <ul class="pull-right">
+                <!-- <li>
+                  <a href="javascript:void(0)" class="">
+                    <img src="images/mail.png" alt=""/>
+                    <span class="red-dot"></span>
+                  </a>
+                  <a href="javascript:void(0)" class="">
+                    <img src="images/bell.png" alt=""/>
+                    <span class="red-dot"></span>
+                  </a>
+                </li> -->
+                <li>
+                  <span class="user-img">
+                    <img src="images/user.png" alt="" *ngIf="! user?.profile.image?.url" />
+                    <img src="uploads/images/{{user?.profile.image.id}}-36-36.jpg" alt="" *ngIf="!! user?.profile.image?.url" />
+                  </span>
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {{user.profile.supplier.companyName}}
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                      <button class="dropdown-item" type="button" [routerLink]="['/changepassword']">Change Password</button>
+                      <button class="dropdown-item" type="button" href="javascript:void(0);" (click)="logout()">Logout</button>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
