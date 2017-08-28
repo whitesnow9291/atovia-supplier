@@ -13,9 +13,12 @@ export interface Tour extends CollectionObject {
     noOfNights: number;
     tourType: string;
     tourPace: string;
+
     hasGuide: boolean;
     hasFlight: boolean;
     hasInsurance: boolean;
+    hotelPickup: boolean;
+    hotelDropoff: boolean;
     isExclusive: boolean;
     /* step 2 */
     startPrice: number;
@@ -51,6 +54,13 @@ export interface Tour extends CollectionObject {
       }
     ];
     totalMeals: number;
+    /* step 4 new package options */
+    packageName: string;
+    packageDescription: string;
+    packageScheduleAndPricing:{
+      scheduleRequired: boolean;
+      
+    }
     /* step 4 */
     featuredImage: {
       id: string;

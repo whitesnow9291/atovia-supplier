@@ -97,25 +97,31 @@ Meteor.methods({
         },
         image: user.profile.image
       };
+      
+      if (user.profile.supplier.agentCertificate && user.profile.supplier.agentCertificate.verified === true) {
+        owner.agentCertificate.verified = true;
+      }
 
       if (user.profile.supplier.agentIdentity && user.profile.supplier.agentIdentity.verified === true) {
         owner.agentIdentity.verified = true;
       }
 
-      if (user.profile.supplier.agentCertificate && user.profile.supplier.agentCertificate.verified === true) {
-        owner.agentCertificate.verified = true;
-      }
 
-      data.owner = owner;
-      data.active = true;
-      data.approved = false;
+      
+      let requestApprovalDate = new Date();
       data.rejected = false;
+      data.approved = false;
+      data.active = true;
       data.deleted = false;
       data.createdAt = new Date();
-      let requestApprovalDate = new Date();
-      //requestApprovalDate.setHours(requestApprovalDate.getHours() + 6);
+      data.owner = owner;
+
+      ////requestApprovalDate.setHours(requestApprovalDate.getHours() + 6);
+
       requestApprovalDate.setMinutes(requestApprovalDate.getMinutes() + 5);
+
       data.requestApprovalAt = requestApprovalDate;
+
       let tourId = Tours.collection.insert(data);
       return tourId;
     },
